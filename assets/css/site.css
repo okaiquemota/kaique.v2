@@ -40,7 +40,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- Nome e descrição ---------- */
 .topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 20px; padding-top: clamp(14px, 2.2vw, 24px); }
 .nome { display: inline-flex; align-items: center; min-height: 40px; }
-.sobre { margin: 0; color: var(--cinza); }
+.sobre { margin: 0; color: var(--cinza); font-size: 12px; }
 
 /* ---------- Foto, assinatura e links ---------- */
 .palco {
@@ -80,13 +80,18 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .links ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 16px; }
 .links a { display: inline-flex; align-items: center; min-height: 40px; }
+/* Instagram, GitHub e Behance vão como logo */
+.links .redes { gap: 0 6px; }
+.redes a { justify-content: center; min-width: 28px; }
+.logo { display: block; width: 17px; height: 17px; fill: currentColor; }
 @media (hover: hover) and (pointer: fine) {
     .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .redes a:hover { color: var(--cinza); }
 }
 
 @media (max-width: 640px) {
     .topo { flex-direction: column; }
-    .sobre { margin-top: -6px; }
+    .sobre { margin-top: -8px; }
     .cidade { display: block; }
     .palco { --w: min(72vw, calc((100svh - 340px) * 0.8)); }
     .links { flex-direction: column; align-items: center; gap: 0; }
