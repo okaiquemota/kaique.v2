@@ -1,21 +1,18 @@
 # Kaique Mota
 
-Portfólio pessoal: projetos, fotografia e contato.
+Página pessoal: o nome e os links.
 
 ```
 .
-├── index.html             página única (tudo, #projetos, #fotografia, #sobre)
-├── img/                   miniaturas quadradas
-└── assets/
-    ├── css/site.css
-    └── js/site.js         troca de vista pelo endereço
+├── index.html
+└── assets/css/site.css
 ```
 
 Não tem build nem dependência. Pra rodar no computador: `python3 -m http.server 8000`.
 
 ## Adicionar ou trocar um link
 
-Cada miniatura é um `<a class="card">` dentro de `#grade` no `index.html`. O `data-grupo` diz em qual vista ela aparece (`projetos`, `fotografia` ou qualquer outro para aparecer só em "tudo"). A imagem vai em `img/`, quadrada.
+Os links ficam no `index.html`, dentro de `<nav class="links">`. Cada grupo é uma `<ul>`; o espaço entre elas separa os grupos.
 
 ## Publicar
 
