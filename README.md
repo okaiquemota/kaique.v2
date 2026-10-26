@@ -1,22 +1,23 @@
 # Kaique Mota
 
-Página pessoal: menu pequeno no topo e a assinatura, em verde neon, se escrevendo no meio da tela.
+Página pessoal: menu pequeno no topo, uma foto no meio e a assinatura de verdade por cima.
 
 ```
 .
-├── index.html                 links e a assinatura (em linha, para animar)
+├── index.html
 └── assets/
     ├── css/site.css
-    └── img/assinatura.svg     a assinatura vetorizada, sozinha
+    └── img/
+        ├── foto.jpg           a foto do meio (troque pela que quiser, de preferência em pé, 3:4)
+        ├── assinatura.png     a assinatura, tirada do traço do lápis (preta, fundo transparente)
+        └── assinatura.svg     a mesma assinatura em vetor, para outros usos
 ```
 
 Não tem build nem dependência. Pra rodar no computador: `python3 -m http.server 8000`.
 
-## A assinatura
+## Trocar a foto
 
-É a assinatura de verdade, fotografada no papel e vetorizada. No `index.html` ela aparece por baixo de uma máscara: cinco traços guia (em `<g class="guias">`) correm na ordem em que ela é escrita e vão revelando o desenho. Clicar na assinatura escreve de novo. Quem pede menos movimento no sistema vê ela pronta, sem animação.
-
-A cor fica em `--neon`, no topo do `site.css`.
+Substitua `assets/img/foto.jpg` por outra com o mesmo nome. Se mudar o tamanho, atualize o `width` e o `height` da `<img class="foto">` no `index.html`.
 
 ## Adicionar ou trocar um link
 

@@ -1,13 +1,13 @@
 /* -------------------------------------------------------------------------
    Kaique Mota — no espírito do site do Nelson Heinemann:
-   menu pequeno no topo e o nome escrito à mão, grande, em verde neon.
-   A assinatura é a de verdade, vetorizada (assets/img/assinatura.svg).
+   menu pequeno no topo, uma foto no meio e a assinatura de verdade por cima.
+   A assinatura vem do traço do lápis (assets/img/assinatura.png); o vetor
+   fica em assets/img/assinatura.svg para outros usos.
 ------------------------------------------------------------------------- */
 :root {
     --papel: #ffffff;
     --tinta: #111111;
     --cinza: #8a8a8a;
-    --neon: #3cff1f;
 
     --f: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -51,26 +51,28 @@ ul { list-style: none; margin: 0; padding: 0; }
     .links a { min-height: 36px; }
 }
 
-/* ---------- Assinatura ---------- */
-.palco { flex: 1; display: grid; place-items: center; padding-block: clamp(16px, 4vw, 40px); }
-.assinatura {
-    display: block;
-    width: min(88vw, 720px, calc((100svh - 200px) * 0.94));
-    min-width: min(88vw, 300px);
-    height: auto;
-    overflow: visible;
-    cursor: pointer;
-    transform: rotate(-4deg);
+/* ---------- Foto e assinatura ---------- */
+.palco { flex: 1; display: grid; place-items: center; padding-block: clamp(24px, 5vw, 56px); overflow: hidden; }
+.quadro {
+    /* a foto se ajusta à largura e à altura da tela; a assinatura passa das bordas dela */
+    --w: min(max(230px, 34vw), 460px, calc((100svh - 220px) * 0.75));
+    position: relative;
+    width: var(--w);
+    margin: 0;
 }
-.traco { fill: var(--neon); stroke: var(--neon); stroke-width: 9; stroke-linejoin: round; }
-
-/* O traço se escreve: cada guia da máscara corre na ordem da assinatura */
-.guias path { stroke-dasharray: 1; stroke-dashoffset: 0; }
-.escreve .guias path { animation: escreve var(--t, 0.6s) cubic-bezier(0.55, 0.05, 0.35, 1) var(--d, 0s) both; }
-@keyframes escreve { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.foto { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.assinatura {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    width: calc(var(--w) * 1.55);
+    max-width: 94vw;
+    height: auto;
+    transform: translate(-50%, -50%) rotate(-4deg);
+    pointer-events: none;
+}
+@media (max-width: 640px) {
+    .quadro { --w: min(68vw, calc((100svh - 300px) * 0.75)); }
+}
 
 .base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 11px; }
-
-@media (prefers-reduced-motion: reduce) {
-    .escreve .guias path { animation: none; }
-}
