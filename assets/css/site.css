@@ -55,12 +55,12 @@ ul { list-style: none; margin: 0; padding: 0; }
 .palco { flex: 1; display: grid; place-items: center; padding-block: clamp(24px, 5vw, 56px); overflow: hidden; }
 .quadro {
     /* a foto se ajusta à largura e à altura da tela; a assinatura passa das bordas dela */
-    --w: min(max(230px, 34vw), 460px, calc((100svh - 220px) * 0.75));
+    --w: min(max(230px, 34vw), 480px, calc((100svh - 220px) * 0.8));
     position: relative;
     width: var(--w);
     margin: 0;
 }
-.foto { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
 .assinatura {
     position: absolute;
     left: 50%;
@@ -72,7 +72,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     pointer-events: none;
 }
 @media (max-width: 640px) {
-    .quadro { --w: min(68vw, calc((100svh - 300px) * 0.75)); }
+    .quadro { --w: min(72vw, calc((100svh - 300px) * 0.8)); }
 }
 
 .base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 11px; }

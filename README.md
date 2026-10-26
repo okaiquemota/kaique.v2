@@ -8,7 +8,7 @@ Página pessoal: menu pequeno no topo, uma foto no meio e a assinatura de verdad
 └── assets/
     ├── css/site.css
     └── img/
-        ├── foto.jpg           a foto do meio (troque pela que quiser, de preferência em pé, 3:4)
+        ├── foto.jpg           a foto do meio (troque pela que quiser, em pé, 4:5)
         ├── assinatura.png     a assinatura, tirada do traço do lápis (preta, fundo transparente)
         └── assinatura.svg     a mesma assinatura em vetor, para outros usos
 ```
