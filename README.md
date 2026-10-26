@@ -1,6 +1,6 @@
 # Kaique Mota
 
-Página pessoal: menu pequeno no topo, uma foto no meio e a assinatura de verdade por cima.
+Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo.
 
 ```
 .
