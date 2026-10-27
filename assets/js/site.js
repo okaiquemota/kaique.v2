@@ -14,6 +14,7 @@
     var seta = document.getElementById('seta');
     var anterior = document.getElementById('anterior');
     var conta = document.getElementById('conta');
+    var corDaBarra = document.querySelector('meta[name="theme-color"]');
 
     document.querySelectorAll('[data-ano]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
     if (perfis.length < 2) { document.getElementById('troca').hidden = true; return; }
@@ -68,7 +69,14 @@
         links.replaceChildren(lista, redes);
     }
 
+    // cada perfil tem o seu visual (cores e detalhes no site.css)
+    function veste(p) {
+        document.documentElement.dataset.perfil = p.id;
+        if (corDaBarra) corDaBarra.content = getComputedStyle(document.documentElement).getPropertyValue('--papel').trim();
+    }
+
     function mostra(p, i) {
+        veste(p);
         foto.src = p.foto;
         foto.alt = p.alt;
         nome.textContent = p.nome;
@@ -98,6 +106,7 @@
 
         if (reduzir) { mostra(p, i); return; }
         trocando = true;
+        veste(p);
         document.body.classList.add('trocando');
         setTimeout(function () {
             mostra(p, i);

@@ -4,6 +4,14 @@ Site único dos três perfis: o pessoal, o [@okaiquemota](https://www.instagram.
 
 Tudo centralizado: o nome no topo, uma foto no meio com a assinatura de verdade por cima, os links embaixo e as setas (← 1/3 →) logo abaixo deles. As setas passam de um perfil pro outro: a assinatura fica, e mudam a foto, o nome, a descrição e os links. Também troca com as setas do teclado e arrastando a foto pro lado no celular.
 
+Cada perfil tem o seu visual, com detalhes sutis (as cores ficam no começo do `site.css`, os detalhes no fim):
+
+- **Kaique Mota**: branco e preto.
+- **okaiquemota**: rosado bem claro, tinta marrom quente, o nome em itálico e a foto um pouco mais quente.
+- **imnotkiq**: quase preto, assinatura branca, o nome em caixa alta espaçado, a foto mais escura, o roxo do imnotkiq no contador e nos sublinhados, e um grão de filme por cima.
+
+Na troca, a cor do fundo e a tinta da assinatura mudam devagar. A assinatura é um recorte do `assinatura.png` pintado com a tinta de cada perfil.
+
 Cada perfil tem endereço próprio, bom pra pôr na bio de cada Instagram:
 
 - https://okaiquemota.github.io/kaique.v2/ (pessoal)

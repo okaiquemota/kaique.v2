@@ -2,7 +2,8 @@
    Kaique Mota — no espírito do site do Nelson Heinemann:
    o nome no topo, uma foto no meio com a assinatura de verdade por cima
    e os links embaixo, tudo no eixo do meio. As setas trocam entre os três
-   perfis (perfis.js): a assinatura fica, o resto muda.
+   perfis (perfis.js): a assinatura fica, o resto muda, e cada perfil tem
+   o seu visual (cores no fim do :root, detalhes no fim do arquivo).
    A assinatura vem do traço do lápis (assets/img/assinatura.png); o vetor
    fica em assets/img/assinatura.svg para outros usos.
 ------------------------------------------------------------------------- */
@@ -10,6 +11,7 @@
     --papel: #ffffff;
     --tinta: #111111;
     --cinza: #707070;
+    --destaque: var(--tinta);
 
     /* Times New Roman onde tiver; Tinos (o mesmo desenho) no Android e no Linux */
     --f: "Times New Roman", Times, Tinos, "Liberation Serif", serif;
@@ -17,9 +19,13 @@
     --margem: clamp(16px, 3vw, 40px);
     color-scheme: light;
 }
+/* okaiquemota: rosado bem claro e tinta marrom quente */
+html[data-perfil="okaiquemota"] { --papel: #f4e9e5; --tinta: #3a2622; --cinza: #7a605a; }
+/* imnotkiq: quase preto, tinta clara e o roxo do imnotkiq nos detalhes */
+html[data-perfil="imnotkiq"] { --papel: #0c0c0d; --tinta: #ececec; --cinza: #8e8e95; --destaque: #9b7dff; color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; transition: background-color 0.5s ease; }
 body {
     display: flex;
     flex-direction: column;
@@ -33,10 +39,12 @@ body {
     line-height: 1.25;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
 :focus-visible { outline: 1.5px solid var(--tinta); outline-offset: 3px; }
+::selection { background: var(--tinta); color: var(--papel); }
 
 /* ---------- Nome e descrição ---------- */
 .topo { display: flex; flex-direction: column; align-items: center; padding-top: clamp(14px, 2.2vw, 24px); text-align: center; }
@@ -66,9 +74,14 @@ ul { list-style: none; margin: 0; padding: 0; }
     top: 52%;
     width: calc(var(--w) * 1.55);
     max-width: 94vw;
-    height: auto;
+    aspect-ratio: 1091 / 1162;
     transform: translate(-50%, -50%) rotate(-4deg);
     pointer-events: none;
+    /* a assinatura é um recorte do PNG: pinta com a tinta de cada perfil */
+    background-color: var(--tinta);
+    -webkit-mask: url("../img/assinatura.png") center / contain no-repeat;
+    mask: url("../img/assinatura.png") center / contain no-repeat;
+    transition: background-color 0.5s ease;
 }
 
 /* As setas: embaixo dos links, no meio */
@@ -112,7 +125,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .redes a { justify-content: center; min-width: 28px; }
 .logo { display: block; width: 17px; height: 17px; fill: currentColor; }
 @media (hover: hover) and (pointer: fine) {
-    .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--destaque); }
     .redes a:hover { color: var(--cinza); }
     #seta:hover .flecha { transform: translateX(4px); }
     #anterior:hover .flecha { transform: translateX(-4px); }
@@ -126,8 +139,30 @@ ul { list-style: none; margin: 0; padding: 0; }
     .links a, .em-breve { min-height: 36px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .foto, .nome, .sobre, .links, .flecha { transition: none; }
-}
-
 .base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 13px; text-align: center; }
+
+/* ---------- Detalhes de cada perfil ---------- */
+/* okaiquemota: o nome em itálico e a foto um pouco mais quente */
+html[data-perfil="okaiquemota"] .nome { font-size: 17px; font-style: italic; }
+html[data-perfil="okaiquemota"] .foto { filter: sepia(0.2) saturate(0.95); }
+
+/* imnotkiq: o nome em caixa alta e espaçado, a foto escura (pra assinatura branca aparecer), o contador em roxo
+   e um grão de filme por cima de tudo */
+html[data-perfil="imnotkiq"] .nome { padding-left: 0.22em; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
+html[data-perfil="imnotkiq"] .foto { filter: contrast(1.2) brightness(0.56); }
+html[data-perfil="imnotkiq"] .conta { color: var(--destaque); }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    transition: opacity 0.5s ease;
+}
+html[data-perfil="imnotkiq"] body::before { opacity: 0.08; }
+
+@media (prefers-reduced-motion: reduce) {
+    html, body, .assinatura, body::before, .foto, .nome, .sobre, .links, .flecha { transition: none; }
+}
