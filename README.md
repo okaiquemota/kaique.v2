@@ -2,7 +2,7 @@
 
 Site único dos três perfis: o pessoal, o [@okaiquemota](https://www.instagram.com/okaiquemota/) (ensaios e casais) e o [@imnotkiq](https://www.instagram.com/imnotkiq/) (fotografia automotiva, com os drives dos eventos).
 
-O nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo. A seta do lado da foto passa de um perfil pro outro: a assinatura fica, e mudam a foto, o nome, a descrição e os links. Também troca com as setas do teclado e arrastando a foto pro lado no celular.
+Tudo centralizado: o nome no topo, uma foto no meio com a assinatura de verdade por cima, os links embaixo e as setas (← 1/3 →) logo abaixo deles. As setas passam de um perfil pro outro: a assinatura fica, e mudam a foto, o nome, a descrição e os links. Também troca com as setas do teclado e arrastando a foto pro lado no celular.
 
 Cada perfil tem endereço próprio, bom pra pôr na bio de cada Instagram:
 
@@ -17,7 +17,7 @@ Cada perfil tem endereço próprio, bom pra pôr na bio de cada Instagram:
     ├── css/site.css
     ├── js/
     │   ├── perfis.js      os três perfis: textos, fotos, links e drives (é aqui que você mexe)
-    │   └── site.js        a seta e a troca de perfil
+    │   └── site.js        as setas e a troca de perfil
     └── img/
         ├── kaique.jpg         foto do perfil pessoal
         ├── okaiquemota.jpg    foto do okaiquemota

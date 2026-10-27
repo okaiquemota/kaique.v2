@@ -1,4 +1,4 @@
-/* A seta troca o perfil: foto, nome, descrição e links (assets/js/perfis.js).
+/* As setas trocam o perfil: foto, nome, descrição e links (assets/js/perfis.js).
    Também troca com as setas do teclado e arrastando a foto pro lado. */
 (function () {
     'use strict';
@@ -12,10 +12,11 @@
     var sobre = document.getElementById('sobre');
     var links = document.getElementById('links');
     var seta = document.getElementById('seta');
+    var anterior = document.getElementById('anterior');
     var conta = document.getElementById('conta');
 
     document.querySelectorAll('[data-ano]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
-    if (perfis.length < 2) { seta.hidden = true; return; }
+    if (perfis.length < 2) { document.getElementById('troca').hidden = true; return; }
 
     function el(tag, classe, texto) {
         var e = document.createElement(tag);
@@ -77,6 +78,7 @@
         document.title = p.nome;
         conta.textContent = (i + 1) + '/' + perfis.length;
         seta.setAttribute('aria-label', 'Próximo perfil: ' + perfis[(i + 1) % perfis.length].nome);
+        anterior.setAttribute('aria-label', 'Perfil anterior: ' + perfis[(i - 1 + perfis.length) % perfis.length].nome);
     }
 
     var atual = 0;
@@ -116,6 +118,7 @@
     });
 
     seta.addEventListener('click', function () { vai(atual + 1); });
+    anterior.addEventListener('click', function () { vai(atual - 1); });
     window.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey) return;
         if (e.key === 'ArrowRight') vai(atual + 1);

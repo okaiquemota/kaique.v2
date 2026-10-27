@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------
    Kaique Mota — no espírito do site do Nelson Heinemann:
    o nome no topo, uma foto no meio com a assinatura de verdade por cima
-   e os links embaixo. A seta troca entre os três perfis (perfis.js):
-   a assinatura fica, o resto muda.
+   e os links embaixo, tudo no eixo do meio. As setas trocam entre os três
+   perfis (perfis.js): a assinatura fica, o resto muda.
    A assinatura vem do traço do lápis (assets/img/assinatura.png); o vetor
    fica em assets/img/assinatura.svg para outros usos.
 ------------------------------------------------------------------------- */
@@ -39,15 +39,15 @@ ul { list-style: none; margin: 0; padding: 0; }
 :focus-visible { outline: 1.5px solid var(--tinta); outline-offset: 3px; }
 
 /* ---------- Nome e descrição ---------- */
-.topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 20px; padding-top: clamp(14px, 2.2vw, 24px); }
+.topo { display: flex; flex-direction: column; align-items: center; padding-top: clamp(14px, 2.2vw, 24px); text-align: center; }
 .nome { display: inline-flex; align-items: center; min-height: 40px; }
-.sobre { margin: 0; color: var(--cinza); font-size: 12px; }
+.sobre { margin: -8px 0 0; color: var(--cinza); font-size: 12px; }
 
 /* ---------- Foto, assinatura e links ---------- */
 .palco {
     /* a foto se ajusta à largura e à altura da tela (sobrando lugar pros links);
        a assinatura passa das bordas dela */
-    --w: min(max(230px, 34vw), 480px, calc((100svh - 210px) * 0.63));
+    --w: min(max(230px, 34vw), 480px, calc((100svh - 272px) * 0.63));
     --assin: min(var(--w) * 1.55, 94vw);
     flex: 1;
     display: flex;
@@ -71,30 +71,25 @@ ul { list-style: none; margin: 0; padding: 0; }
     pointer-events: none;
 }
 
-/* A seta: no canto de baixo, do lado de fora da foto, onde a assinatura não passa */
+/* As setas: embaixo dos links, no meio */
+.troca { display: flex; justify-content: center; align-items: center; gap: 6px; }
 .seta {
-    position: absolute;
-    z-index: 1;
-    left: 100%;
-    bottom: -6px;
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 4px;
+    justify-content: center;
     min-width: 44px;
-    min-height: 56px;
-    margin-left: clamp(0px, 1.2vw, 16px);
+    min-height: 44px;
     padding: 0;
     border: 0;
     background: none;
     color: var(--tinta);
     font: inherit;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1;
     cursor: pointer;
 }
-.conta { color: var(--cinza); font-size: 11px; font-variant-numeric: tabular-nums; }
+/* o número desce um pouco pra ficar na altura das setas */
+.conta { position: relative; top: 3px; min-width: 3ch; color: var(--cinza); font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
 .flecha { display: block; transition: transform 0.25s ease; }
 
 /* Troca de perfil: some e volta */
@@ -119,14 +114,13 @@ ul { list-style: none; margin: 0; padding: 0; }
 @media (hover: hover) and (pointer: fine) {
     .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; }
     .redes a:hover { color: var(--cinza); }
-    .seta:hover .flecha { transform: translateX(4px); }
+    #seta:hover .flecha { transform: translateX(4px); }
+    #anterior:hover .flecha { transform: translateX(-4px); }
 }
 
 @media (max-width: 640px) {
-    .topo { flex-direction: column; }
-    .sobre { margin-top: -8px; }
     .cidade { display: block; }
-    .palco { --w: min(72vw, calc((100svh - 340px) * 0.8)); }
+    .palco { --w: min(72vw, calc((100svh - 384px) * 0.8)); }
     .links { flex-direction: column; align-items: center; gap: 0; }
     .links ul { gap: 0 14px; }
     .links a, .em-breve { min-height: 36px; }
@@ -136,4 +130,4 @@ ul { list-style: none; margin: 0; padding: 0; }
     .foto, .nome, .sobre, .links, .flecha { transition: none; }
 }
 
-.base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 13px; }
+.base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 13px; text-align: center; }
