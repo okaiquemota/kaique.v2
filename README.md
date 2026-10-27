@@ -25,4 +25,16 @@ Os links ficam no `<nav class="links">` do `index.html`. Cada grupo é uma `<ul>
 
 ## Publicar
 
-Em **Settings → Pages**, escolhe a branch `main` e a pasta `/ (root)`. O site fica em https://okaiquemota.github.io/kaique.v2/
+Em **Settings → Pages**, branch `main` e pasta `/ (root)`. O site fica em https://okaiquemota.com.br (o arquivo `CNAME` diz isso pro GitHub).
+
+DNS no Registro.br (zona do okaiquemota.com.br):
+
+| Tipo  | Nome  | Valor                   |
+|-------|-------|-------------------------|
+| A     | (vazio) | 185.199.108.153       |
+| A     | (vazio) | 185.199.109.153       |
+| A     | (vazio) | 185.199.110.153       |
+| A     | (vazio) | 185.199.111.153       |
+| CNAME | www   | okaiquemota.github.io   |
+
+Quando o DNS propagar, marca **Enforce HTTPS** em Settings → Pages.
