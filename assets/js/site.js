@@ -8,6 +8,7 @@
     var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var foto = document.getElementById('foto');
+    var moldura = document.getElementById('moldura');
     var nome = document.getElementById('nome');
     var sobre = document.getElementById('sobre');
     var links = document.getElementById('links');
@@ -79,6 +80,10 @@
         veste(p);
         foto.src = p.foto;
         foto.alt = p.alt;
+        pintaTexto(p, i);
+    }
+
+    function pintaTexto(p, i) {
         nome.textContent = p.nome;
         sobre.replaceChildren(document.createTextNode(p.sobre[0] + ' '));
         if (p.sobre[1]) sobre.append(el('span', 'cidade', p.sobre[1]));
@@ -89,11 +94,66 @@
         anterior.setAttribute('aria-label', 'Perfil anterior: ' + perfis[(i - 1 + perfis.length) % perfis.length].nome);
     }
 
+    // ---------- Animação da troca ----------
+    // A foto nova entra como uma cortina pelo lado da seta, com um zoom que assenta,
+    // e a antiga recua um pouco por baixo. O texto sai subindo e volta descendo, um de cada vez.
+    var CURVA = 'cubic-bezier(0.77, 0, 0.18, 1)';
+    var DURACAO = 950;
+    var cortina = window.CSS && CSS.supports && CSS.supports('clip-path', 'inset(0 0 0 0)');
+    var textos = [nome, sobre, links];
+
+    function troca(p, i, dir) {
+        trocando = true;
+        veste(p);
+
+        textos.forEach(function (t, k) {
+            t.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-8px)' }],
+                { duration: 220, delay: k * 40, easing: 'ease-in', fill: 'forwards' });
+        });
+        setTimeout(function () {
+            pintaTexto(p, i);
+            textos.forEach(function (t, k) {
+                t.getAnimations().forEach(function (a) { a.cancel(); });
+                t.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
+                    { duration: 520, delay: 160 + k * 70, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)', fill: 'backwards' });
+            });
+        }, 340);
+
+        var velha = foto;
+        var nova = new Image(velha.width, velha.height);
+        nova.className = 'foto foto-nova';
+        nova.alt = p.alt;
+        nova.src = p.foto;
+        var comeca = function () {
+            moldura.append(nova);
+            var entra = nova.animate(cortina ? [
+                { clipPath: dir > 0 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)', transform: 'scale(1.14)' },
+                { clipPath: 'inset(0 0 0 0)', transform: 'scale(1)' }
+            ] : [
+                { opacity: 0, transform: 'scale(1.06)' },
+                { opacity: 1, transform: 'scale(1)' }
+            ], { duration: DURACAO, easing: CURVA });
+            velha.animate([
+                { transform: 'none' },
+                { transform: 'translateX(' + (-dir * 14) + '%) scale(1.04)' }
+            ], { duration: DURACAO, easing: CURVA, fill: 'forwards' });
+            entra.onfinish = function () {
+                velha.remove();
+                nova.classList.remove('foto-nova');
+                nova.id = 'foto';
+                foto = nova;
+                trocando = false;
+            };
+        };
+        if (nova.decode) nova.decode().then(comeca, comeca); else nova.onload = comeca;
+    }
+
     var atual = 0;
     var trocando = false;
-    function vai(i, doEndereco) {
+    function vai(i, doEndereco, dir) {
         i = (i + perfis.length) % perfis.length;
         if (i === atual || trocando) return;
+        dir = dir || (i > atual ? 1 : -1);
         atual = i;
         var p = perfis[i];
         if (!doEndereco) {
@@ -104,18 +164,8 @@
             }
         }
 
-        if (reduzir) { mostra(p, i); return; }
-        trocando = true;
-        veste(p);
-        document.body.classList.add('trocando');
-        setTimeout(function () {
-            mostra(p, i);
-            var pronto = function () {
-                document.body.classList.remove('trocando');
-                trocando = false;
-            };
-            if (foto.decode) foto.decode().then(pronto, pronto); else pronto();
-        }, 240);
+        if (reduzir || !foto.animate) { mostra(p, i); return; }
+        troca(p, i, dir);
     }
 
     // começa no perfil do endereço (kaique.v2/#imnotkiq)
@@ -126,12 +176,12 @@
         vai(i < 0 ? 0 : i, true);
     });
 
-    seta.addEventListener('click', function () { vai(atual + 1); });
-    anterior.addEventListener('click', function () { vai(atual - 1); });
+    seta.addEventListener('click', function () { vai(atual + 1, false, 1); });
+    anterior.addEventListener('click', function () { vai(atual - 1, false, -1); });
     window.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey) return;
-        if (e.key === 'ArrowRight') vai(atual + 1);
-        else if (e.key === 'ArrowLeft') vai(atual - 1);
+        if (e.key === 'ArrowRight') vai(atual + 1, false, 1);
+        else if (e.key === 'ArrowLeft') vai(atual - 1, false, -1);
     });
 
     // arrastar a foto pro lado
@@ -142,7 +192,7 @@
         if (x0 === null) return;
         var dx = e.clientX - x0;
         x0 = null;
-        if (Math.abs(dx) > 40) vai(atual + (dx < 0 ? 1 : -1));
+        if (Math.abs(dx) > 40) vai(atual + (dx < 0 ? 1 : -1), false, dx < 0 ? 1 : -1);
     });
     quadro.addEventListener('pointercancel', function () { x0 = null; });
 

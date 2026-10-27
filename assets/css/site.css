@@ -25,7 +25,7 @@ html[data-perfil="okaiquemota"] { --papel: #f4e9e5; --tinta: #3a2622; --cinza: #
 html[data-perfil="imnotkiq"] { --papel: #0c0c0d; --tinta: #ececec; --cinza: #8e8e95; --destaque: #9b7dff; color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; transition: background-color 0.5s ease; }
+html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; transition: background-color 0.8s ease; }
 body {
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@ body {
     line-height: 1.25;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
@@ -67,7 +67,10 @@ ul { list-style: none; margin: 0; padding: 0; }
     overflow-x: clip;
 }
 .quadro { position: relative; width: var(--w); margin: 0; touch-action: pan-y; }
-.foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+/* a moldura corta a foto: a nova entra por cima da antiga, como uma cortina (site.js) */
+.moldura { position: relative; overflow: hidden; aspect-ratio: 4 / 5; }
+.foto { display: block; width: 100%; height: 100%; object-fit: cover; transition: filter 0.8s ease; }
+.foto-nova { position: absolute; inset: 0; will-change: clip-path, transform; }
 .assinatura {
     position: absolute;
     left: 50%;
@@ -81,7 +84,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     background-color: var(--tinta);
     -webkit-mask: url("../img/assinatura.png") center / contain no-repeat;
     mask: url("../img/assinatura.png") center / contain no-repeat;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.8s ease;
 }
 
 /* As setas: embaixo dos links, no meio */
@@ -104,10 +107,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* o número desce um pouco pra ficar na altura das setas */
 .conta { position: relative; top: 3px; min-width: 3ch; color: var(--cinza); font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
 .flecha { display: block; transition: transform 0.25s ease; }
-
-/* Troca de perfil: some e volta */
-.foto, .nome, .sobre, .links { transition: opacity 0.24s ease; }
-.trocando .foto, .trocando .nome, .trocando .sobre, .trocando .links { opacity: 0; }
 
 /* os links começam onde a ponta de baixo da assinatura termina */
 .links {
@@ -159,10 +158,10 @@ body::before {
     pointer-events: none;
     opacity: 0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s ease;
 }
 html[data-perfil="imnotkiq"] body::before { opacity: 0.08; }
 
 @media (prefers-reduced-motion: reduce) {
-    html, body, .assinatura, body::before, .foto, .nome, .sobre, .links, .flecha { transition: none; }
+    html, body, .assinatura, body::before, .foto, .flecha { transition: none; }
 }

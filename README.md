@@ -10,7 +10,7 @@ Cada perfil tem o seu visual, com detalhes sutis (as cores ficam no começo do `
 - **okaiquemota**: rosado bem claro, tinta marrom quente, o nome em itálico e a foto um pouco mais quente.
 - **imnotkiq**: quase preto, assinatura branca, o nome em caixa alta espaçado, a foto mais escura, o roxo do imnotkiq no contador e nos sublinhados, e um grão de filme por cima.
 
-Na troca, a cor do fundo e a tinta da assinatura mudam devagar. A assinatura é um recorte do `assinatura.png` pintado com a tinta de cada perfil.
+Na troca, a foto nova entra como uma cortina pelo lado da seta, com um zoom leve que assenta, enquanto a antiga recua por baixo; o nome, a descrição e os links saem e voltam com um deslize, um de cada vez; e a cor do fundo e a tinta da assinatura mudam devagar. Quem pede menos movimento no sistema vê a troca direta. A assinatura é um recorte do `assinatura.png` pintado com a tinta de cada perfil.
 
 Cada perfil tem endereço próprio, bom pra pôr na bio de cada Instagram:
 
