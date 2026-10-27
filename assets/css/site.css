@@ -1,9 +1,7 @@
 /* -------------------------------------------------------------------------
    Kaique Mota — no espírito do site do Nelson Heinemann:
    o nome no topo, uma foto no meio com a assinatura de verdade por cima
-   e os links embaixo, tudo no eixo do meio. As setas trocam entre os três
-   perfis (perfis.js): a assinatura fica, o resto muda, e cada perfil tem
-   o seu visual (cores no fim do :root, detalhes no fim do arquivo).
+   e os links embaixo, tudo no eixo do meio.
    A assinatura vem do traço do lápis (assets/img/assinatura.png); o vetor
    fica em assets/img/assinatura.svg para outros usos.
 ------------------------------------------------------------------------- */
@@ -11,7 +9,6 @@
     --papel: #ffffff;
     --tinta: #111111;
     --cinza: #707070;
-    --destaque: var(--tinta);
 
     /* Times New Roman onde tiver; Tinos (o mesmo desenho) no Android e no Linux */
     --f: "Times New Roman", Times, Tinos, "Liberation Serif", serif;
@@ -19,13 +16,9 @@
     --margem: clamp(16px, 3vw, 40px);
     color-scheme: light;
 }
-/* okaiquemota: rosado bem claro e tinta marrom quente */
-html[data-perfil="okaiquemota"] { --papel: #f4e9e5; --tinta: #3a2622; --cinza: #7a605a; }
-/* imnotkiq: quase preto, tinta clara e o roxo do imnotkiq nos detalhes */
-html[data-perfil="imnotkiq"] { --papel: #0c0c0d; --tinta: #ececec; --cinza: #8e8e95; --destaque: #9b7dff; color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; transition: background-color 0.8s ease; }
+html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
     display: flex;
     flex-direction: column;
@@ -39,7 +32,6 @@ body {
     line-height: 1.25;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color 0.8s ease, color 0.8s ease;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
@@ -55,7 +47,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .palco {
     /* a foto se ajusta à largura e à altura da tela (sobrando lugar pros links);
        a assinatura passa das bordas dela */
-    --w: min(max(230px, 34vw), 480px, calc((100svh - 272px) * 0.63));
+    --w: min(max(230px, 34vw), 480px, calc((100svh - 228px) * 0.63));
     --assin: min(var(--w) * 1.55, 94vw);
     flex: 1;
     display: flex;
@@ -66,47 +58,18 @@ ul { list-style: none; margin: 0; padding: 0; }
     padding-block: calc(max(0px, var(--assin) * 0.5 - var(--w) * 0.65) + 20px) 20px;
     overflow-x: clip;
 }
-.quadro { position: relative; width: var(--w); margin: 0; touch-action: pan-y; }
-/* a moldura corta a foto: a nova entra por cima da antiga, como uma cortina (site.js) */
-.moldura { position: relative; overflow: hidden; aspect-ratio: 4 / 5; }
-.foto { display: block; width: 100%; height: 100%; object-fit: cover; transition: filter 0.8s ease; }
-.foto-nova { position: absolute; inset: 0; will-change: clip-path, transform; }
+.quadro { position: relative; width: var(--w); margin: 0; }
+.foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
 .assinatura {
     position: absolute;
     left: 50%;
     top: 52%;
     width: calc(var(--w) * 1.55);
     max-width: 94vw;
-    aspect-ratio: 1091 / 1162;
+    height: auto;
     transform: translate(-50%, -50%) rotate(-4deg);
     pointer-events: none;
-    /* a assinatura é um recorte do PNG: pinta com a tinta de cada perfil */
-    background-color: var(--tinta);
-    -webkit-mask: url("../img/assinatura.png") center / contain no-repeat;
-    mask: url("../img/assinatura.png") center / contain no-repeat;
-    transition: background-color 0.8s ease;
 }
-
-/* As setas: embaixo dos links, no meio */
-.troca { display: flex; justify-content: center; align-items: center; gap: 6px; }
-.seta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--tinta);
-    font: inherit;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-}
-/* o número desce um pouco pra ficar na altura das setas */
-.conta { position: relative; top: 3px; min-width: 3ch; color: var(--cinza); font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
-.flecha { display: block; transition: transform 0.25s ease; }
 
 /* os links começam onde a ponta de baixo da assinatura termina */
 .links {
@@ -117,51 +80,22 @@ ul { list-style: none; margin: 0; padding: 0; }
     margin-top: calc(max(0px, var(--assin) * 0.52 - var(--w) * 0.6) + clamp(16px, 2.4vw, 28px));
 }
 .links ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 16px; }
-.links a, .em-breve { display: inline-flex; align-items: center; min-height: 40px; }
-.em-breve { color: var(--cinza); }
+.links a { display: inline-flex; align-items: center; min-height: 40px; }
 /* Instagram, GitHub e Behance vão como logo */
 .links .redes { gap: 0 6px; }
 .redes a { justify-content: center; min-width: 28px; }
 .logo { display: block; width: 17px; height: 17px; fill: currentColor; }
 @media (hover: hover) and (pointer: fine) {
-    .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--destaque); }
+    .links a:hover, .nome:hover { text-decoration: underline; text-underline-offset: 3px; }
     .redes a:hover { color: var(--cinza); }
-    #seta:hover .flecha { transform: translateX(4px); }
-    #anterior:hover .flecha { transform: translateX(-4px); }
 }
 
 @media (max-width: 640px) {
     .cidade { display: block; }
-    .palco { --w: min(72vw, calc((100svh - 384px) * 0.8)); }
+    .palco { --w: min(72vw, calc((100svh - 340px) * 0.8)); }
     .links { flex-direction: column; align-items: center; gap: 0; }
     .links ul { gap: 0 14px; }
-    .links a, .em-breve { min-height: 36px; }
+    .links a { min-height: 36px; }
 }
 
 .base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 13px; text-align: center; }
-
-/* ---------- Detalhes de cada perfil ---------- */
-/* okaiquemota: o nome em itálico e a foto um pouco mais quente */
-html[data-perfil="okaiquemota"] .nome { font-size: 17px; font-style: italic; }
-html[data-perfil="okaiquemota"] .foto { filter: sepia(0.2) saturate(0.95); }
-
-/* imnotkiq: o nome em caixa alta e espaçado, a foto escura (pra assinatura branca aparecer), o contador em roxo
-   e um grão de filme por cima de tudo */
-html[data-perfil="imnotkiq"] .nome { padding-left: 0.22em; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
-html[data-perfil="imnotkiq"] .foto { filter: contrast(1.2) brightness(0.56); }
-html[data-perfil="imnotkiq"] .conta { color: var(--destaque); }
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-    transition: opacity 0.8s ease;
-}
-html[data-perfil="imnotkiq"] body::before { opacity: 0.08; }
-
-@media (prefers-reduced-motion: reduce) {
-    html, body, .assinatura, body::before, .foto, .flecha { transition: none; }
-}
