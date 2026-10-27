@@ -86,7 +86,13 @@
         if (i === atual || trocando) return;
         atual = i;
         var p = perfis[i];
-        if (!doEndereco) history.replaceState(null, '', i === 0 ? location.pathname + location.search : '#' + p.id);
+        if (!doEndereco) {
+            try {
+                history.replaceState(null, '', i === 0 ? location.pathname + location.search : '#' + p.id);
+            } catch (e) {
+                // em página embutida o endereço pode não mudar; a troca segue igual
+            }
+        }
 
         if (reduzir) { mostra(p, i); return; }
         trocando = true;
