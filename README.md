@@ -1,28 +1,41 @@
 # Kaique Mota
 
-Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo.
+Site único dos três perfis: o pessoal, o [@okaiquemota](https://www.instagram.com/okaiquemota/) (ensaios e casais) e o [@imnotkiq](https://www.instagram.com/imnotkiq/) (fotografia automotiva, com os drives dos eventos).
+
+O nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo. A seta do lado da foto passa de um perfil pro outro: a assinatura fica, e mudam a foto, o nome, a descrição e os links. Também troca com as setas do teclado e arrastando a foto pro lado no celular.
+
+Cada perfil tem endereço próprio, bom pra pôr na bio de cada Instagram:
+
+- https://okaiquemota.github.io/kaique.v2/ (pessoal)
+- https://okaiquemota.github.io/kaique.v2/#okaiquemota
+- https://okaiquemota.github.io/kaique.v2/#imnotkiq
 
 ```
 .
-├── index.html
+├── index.html             já vem com o perfil pessoal escrito
 └── assets/
     ├── css/site.css
+    ├── js/
+    │   ├── perfis.js      os três perfis: textos, fotos, links e drives (é aqui que você mexe)
+    │   └── site.js        a seta e a troca de perfil
     └── img/
-        ├── foto.jpg           a foto do meio (troque pela que quiser, em pé, 4:5)
+        ├── kaique.jpg         foto do perfil pessoal
+        ├── okaiquemota.jpg    foto do okaiquemota
+        ├── imnotkiq.jpg       foto do imnotkiq
         ├── assinatura.png     a assinatura, tirada do traço do lápis (preta, fundo transparente)
-        └── assinatura.svg     a mesma assinatura em vetor, para outros usos
+        └── assinatura.svg     a mesma assinatura em vetor (também é o ícone da aba)
 ```
 
 Não tem build nem dependência. Pra rodar no computador: `python3 -m http.server 8000`.
 
-## Trocar a foto
+## Adicionar um drive no imnotkiq
 
-Substitua `assets/img/foto.jpg` por outra com o mesmo nome. Se mudar o tamanho, atualize o `width` e o `height` da `<img class="foto">` no `index.html`.
+Em `assets/js/perfis.js`, no perfil `imnotkiq`, adiciona o evento **no topo** de `eventos`: `{ nome: 'Nome do evento', drive: 'link da pasta' }`. O link precisa estar em "Qualquer pessoa com o link → Leitor". Com `drive: ''` o evento aparece em cinza com "em breve".
 
-## Adicionar ou trocar um link
+## Trocar uma foto
 
-Os links ficam no `<nav class="links">` do `index.html`. Cada grupo é uma `<ul>`.
+Substitui o arquivo em `assets/img/` por outro com o mesmo nome, em pé (4:5, 1200×1500 de preferência). As fotos estão em preto e branco claro; mantém o mesmo tratamento pra elas combinarem.
 
 ## Publicar
 
-Em **Settings → Pages**, escolhe a branch `main` e a pasta `/ (root)`. O site fica em https://okaiquemota.github.io/kaique.v2/
+Em **Settings → Pages**, branch `main` e pasta `/ (root)`.
