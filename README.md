@@ -21,7 +21,7 @@ Substitua `assets/img/kaique.jpg` por outra com o mesmo nome. Se mudar o tamanho
 
 ## Adicionar ou trocar um link
 
-Os links ficam no `<nav class="links">` do `index.html`. Cada grupo é uma `<ul>`; os logos usam os símbolos do topo do arquivo (`#ico-instagram`, `#ico-github`, `#ico-behance`).
+Os links ficam no `<nav class="links">` do `index.html`. Cada grupo é uma `<ul>`; os logos usam os símbolos do topo do arquivo (`#ico-instagram`, `#ico-x`, `#ico-github`, `#ico-behance`).
 
 ## Publicar
 
