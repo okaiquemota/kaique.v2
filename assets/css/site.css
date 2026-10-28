@@ -14,16 +14,20 @@
     --f: "Times New Roman", Times, Tinos, "Liberation Serif", serif;
 
     --margem: clamp(16px, 3vw, 40px);
+    /* altura da tela; o script do index.html troca pela altura que realmente aparece,
+       quando ela é menor (Safari com a barra flutuando por cima, navegador do Instagram) */
+    --alto: 100svh;
     color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overscroll-behavior: none; }
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100svh;
+    min-height: var(--alto);
     margin: 0;
+    overscroll-behavior: none;
     padding: env(safe-area-inset-top, 0px) max(var(--margem), env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(var(--margem), env(safe-area-inset-left, 0px));
     background: var(--papel);
     color: var(--tinta);
@@ -47,8 +51,9 @@ ul { list-style: none; margin: 0; padding: 0; }
 .palco {
     /* a foto se ajusta à largura e à altura da tela (sobrando lugar pros links);
        a assinatura passa das bordas dela */
-    --w: min(max(230px, 34vw), 480px, calc((100svh - 228px) * 0.63));
-    --assin: min(var(--w) * 1.55, 94vw);
+    --w: min(max(230px, 34vw), 480px, calc((var(--alto) - 228px) * 0.63));
+    /* até 90vw: girada, a assinatura ainda cabe na largura da tela sem vazar pros lados */
+    --assin: min(var(--w) * 1.55, 90vw);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -65,7 +70,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     left: 50%;
     top: 52%;
     width: calc(var(--w) * 1.55);
-    max-width: 94vw;
+    max-width: 90vw;
     height: auto;
     transform: translate(-50%, -50%) rotate(-4deg);
     pointer-events: none;
@@ -92,7 +97,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 @media (max-width: 640px) {
     .cidade { display: block; }
-    .palco { --w: min(72vw, calc((100svh - 340px) * 0.8)); }
+    .palco { --w: min(72vw, calc((var(--alto) - 348px) * 0.8)); }
     .links { flex-direction: column; align-items: center; gap: 0; }
     .links ul { gap: 0 14px; }
     .links a { min-height: 36px; }
