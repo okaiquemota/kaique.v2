@@ -1,0 +1,176 @@
+/* -------------------------------------------------------------------------
+   okaiquemota — a fotografia do Kaique.
+   A primeira tela segue a página pessoal (nome, foto com a assinatura por
+   cima e links, com espaços iguais); embaixo vêm os pacotes no desenho do
+   orçamento. Cores do okaiquemota: rosado bem claro e tinta marrom quente.
+------------------------------------------------------------------------- */
+:root {
+    --papel: #f4e9e5;
+    --tinta: #3a2622;
+    --cinza: #7a605a;
+    --linha: #dcc5bd;
+
+    /* Times New Roman onde tiver; Tinos (o mesmo desenho) no Android e no Linux */
+    --f: "Times New Roman", Times, Tinos, "Liberation Serif", serif;
+
+    --margem: clamp(16px, 3vw, 40px);
+    /* altura da tela; o script do index.html troca pela altura que realmente aparece */
+    --alto: 100svh;
+    color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--papel); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+    margin: 0;
+    padding: 0 max(var(--margem), env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(var(--margem), env(safe-area-inset-left, 0px));
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--f);
+    font-size: 15px;
+    line-height: 1.25;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, p { margin: 0; }
+:focus-visible { outline: 1.5px solid var(--tinta); outline-offset: 3px; }
+::selection { background: var(--tinta); color: var(--papel); }
+@media (hover: hover) and (pointer: fine) {
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .redes a:hover { color: var(--cinza); }
+}
+
+/* ---------- Primeira tela ---------- */
+.capa { display: flex; flex-direction: column; min-height: var(--alto); padding-top: env(safe-area-inset-top, 0px); }
+.topo { display: flex; flex-direction: column; align-items: center; padding-top: clamp(14px, 2.2vw, 24px); text-align: center; }
+.nome { display: inline-flex; align-items: center; min-height: 40px; font-size: 17px; font-style: italic; font-weight: 400; }
+.sobre { margin: -8px 0 0; color: var(--cinza); font-size: 12px; }
+
+.palco {
+    --w: min(max(230px, 34vw), 480px, calc((var(--alto) - 228px) * 0.63));
+    /* até 90vw: girada, a assinatura ainda cabe na largura da tela */
+    --assin: min(var(--w) * 1.55, 90vw);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* a sobra de altura se divide em partes iguais: nome → assinatura → links → fim da tela */
+    justify-content: space-evenly;
+    gap: 12px;
+    padding-block: 12px;
+    overflow-x: clip;
+}
+/* a moldura ganha em cima e embaixo o tanto que a assinatura passa da foto;
+   os 11px compensam a área de toque dos links */
+.quadro {
+    position: relative;
+    width: var(--w);
+    margin: calc(max(0px, var(--assin) * 0.5 - var(--w) * 0.65) + 11px) 0 calc(max(0px, var(--assin) * 0.52 - var(--w) * 0.6));
+}
+.foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: sepia(0.2) saturate(0.95); }
+/* a assinatura é um recorte do PNG pintado com a tinta marrom */
+.assinatura {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    width: calc(var(--w) * 1.55);
+    max-width: 90vw;
+    aspect-ratio: 1091 / 1162;
+    transform: translate(-50%, -50%) rotate(-4deg);
+    pointer-events: none;
+    background-color: var(--tinta);
+    -webkit-mask: url("../assets/img/assinatura.png") center / contain no-repeat;
+    mask: url("../assets/img/assinatura.png") center / contain no-repeat;
+}
+
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 28px; }
+/* no computador os links ficam numa linha só: um respiro a mais embaixo iguala o último espaço */
+@media (min-width: 641px) { .palco { padding-bottom: 25px; } }
+.links ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 16px; }
+.links a { display: inline-flex; align-items: center; min-height: 40px; }
+.links .redes { gap: 0 6px; }
+.redes a { justify-content: center; min-width: 28px; }
+.logo { display: block; width: 17px; height: 17px; fill: currentColor; }
+
+/* ---------- Blocos de baixo (no desenho do orçamento) ---------- */
+.bloco { max-width: 760px; margin: 0 auto; padding-top: clamp(72px, 11vw, 128px); scroll-margin-top: 8px; }
+.titulo { font-size: clamp(36px, 7vw, 46px); font-weight: 400; line-height: 1; letter-spacing: -0.01em; text-align: center; }
+.linha-fina { margin-top: 10px; color: var(--cinza); font-size: 14px; font-style: italic; line-height: 1.45; text-align: center; }
+
+/* Pacotes: cada tipo de foto é uma linha que abre os pacotes, como no sumário */
+.sumario { margin-top: 32px; border-bottom: 1px solid var(--linha); }
+.categoria { border-top: 1px solid var(--linha); }
+.categoria > summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 16px 0; cursor: pointer; list-style: none; }
+.categoria > summary::-webkit-details-marker { display: none; }
+.cat-texto { display: flex; flex-direction: column; gap: 4px; }
+.cat-nome { font-size: 22px; line-height: 1.2; }
+.cat-resumo { color: var(--cinza); font-size: 13px; line-height: 1.35; }
+.cat-num { display: inline-flex; align-items: center; gap: 14px; flex-shrink: 0; color: var(--cinza); font-size: 15px; letter-spacing: 0.08em; }
+.cat-num::after { content: "+"; display: inline-block; font-size: 22px; letter-spacing: 0; line-height: 1; color: var(--tinta); transition: transform 0.25s ease; }
+.categoria[open] .cat-num::after { transform: rotate(45deg); }
+@media (hover: hover) and (pointer: fine) { .categoria > summary:hover .cat-nome { text-decoration: underline; text-underline-offset: 4px; } }
+
+.cat-corpo { display: flex; flex-direction: column; gap: 22px; padding: 6px 0 30px; }
+.cat-intro { color: var(--cinza); font-size: 14px; font-style: italic; line-height: 1.45; }
+.cat-nota { font-size: 13px; line-height: 1.3; text-align: center; }
+
+.pacote { position: relative; border: 1px solid var(--linha); padding: 18px 22px; }
+.pacote.destaque { border-color: var(--tinta); }
+.selo { position: absolute; top: -8px; left: 18px; padding: 0 8px; background: var(--papel); font-size: 11px; line-height: 1.3; letter-spacing: 0.12em; text-transform: uppercase; }
+.pacote-topo { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 10px 24px; }
+.pacote-nome { display: flex; flex-direction: column; gap: 3px; }
+.rotulo { color: var(--cinza); font-size: 11px; line-height: 1.2; letter-spacing: 0.12em; text-transform: uppercase; }
+.pacote h3 { font-size: 24px; font-weight: 400; line-height: 1.15; }
+.frase { color: var(--cinza); font-size: 13.5px; font-style: italic; line-height: 1.35; }
+.preco { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.valor { font-size: 30px; line-height: 1; }
+.investimento { color: var(--cinza); font-size: 12px; line-height: 1.2; }
+.itens { margin-top: 14px; columns: 2; column-gap: 32px; font-size: 13px; line-height: 1.38; }
+.itens li { display: flex; gap: 8px; padding-bottom: 3px; break-inside: avoid; }
+.itens li::before { content: "–"; color: var(--cinza); }
+
+/* Como funciona: as condições, numeradas */
+.condicoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 44px; margin-top: 40px; }
+.condicao { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid var(--linha); }
+.condicao .num { color: var(--cinza); font-size: 13px; letter-spacing: 0.08em; }
+.condicao h3 { font-size: 20px; font-weight: 400; line-height: 1.2; }
+.condicao p { font-size: 14px; line-height: 1.45; }
+
+/* Reserva */
+.reserva { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: clamp(56px, 9vw, 96px); }
+.reserva .assinatura-solta {
+    width: min(380px, 78vw);
+    aspect-ratio: 1091 / 1162;
+    margin-bottom: 28px;
+    transform: rotate(-4deg);
+    background-color: var(--tinta);
+    -webkit-mask: url("../assets/img/assinatura.png") center / contain no-repeat;
+    mask: url("../assets/img/assinatura.png") center / contain no-repeat;
+}
+.reserva .acoes { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 22px; font-size: 18px; }
+.reserva .acoes a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--linha); }
+.reserva .acoes a + a { color: var(--cinza); font-size: 15px; }
+
+.base { padding-block: 0 clamp(14px, 2.2vw, 24px); color: var(--cinza); font-size: 13px; text-align: center; }
+.base a { display: inline-flex; align-items: center; min-height: 40px; }
+
+@media (max-width: 640px) {
+    .cidade { display: block; }
+    .palco { --w: min(58vw, calc((var(--alto) - 330px) * 0.8)); }
+    .links { flex-direction: column; align-items: center; gap: 0; }
+    .links ul { gap: 0 14px; }
+    .links a { min-height: 36px; }
+    .cat-nome { font-size: 20px; }
+    .pacote { padding: 18px 16px; }
+    /* o preço desce pra baixo do nome: fica numa linha só, "R$ 690 investimento" */
+    .preco { flex-direction: row; align-items: baseline; gap: 8px; }
+    .itens { columns: 1; }
+    .condicoes { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cat-num::after { transition: none; }
+}

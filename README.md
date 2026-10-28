@@ -2,13 +2,19 @@
 
 Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo, tudo centralizado.
 
+Em `/fotografia` fica o site do [@okaiquemota](https://www.instagram.com/okaiquemota/): a mesma primeira tela, nas cores do okaiquemota (rosado claro e tinta marrom), e embaixo os pacotes, o "Como funciona" e a reserva pelo WhatsApp, no desenho do orçamento. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem o tipo de foto.
+
 ```
 .
 ├── index.html
+├── fotografia/
+│   ├── index.html         o site do okaiquemota (pacotes e preços estão aqui)
+│   └── fotografia.css
 └── assets/
     ├── css/site.css
     └── img/
         ├── kaique.jpg         a foto do meio (em pé, 4:5)
+        ├── okaiquemota.jpg    a foto do site de fotografia
         ├── assinatura.png     a assinatura, tirada do traço do lápis (preta, fundo transparente)
         └── assinatura.svg     a mesma assinatura em vetor (também é o ícone da aba)
 ```
