@@ -58,12 +58,20 @@ ul { list-style: none; margin: 0; padding: 0; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* em cima, o espaço que a ponta de cima da assinatura ocupa */
-    padding-block: calc(max(0px, var(--assin) * 0.5 - var(--w) * 0.65) + 20px) 20px;
+    /* a sobra de altura se divide em partes iguais: nome → assinatura → links → rodapé */
+    justify-content: space-evenly;
+    gap: 12px;
+    padding-block: 12px;
     overflow-x: clip;
 }
-.quadro { position: relative; width: var(--w); margin: 0; }
+/* a moldura da foto ganha em cima e embaixo o tanto que a assinatura passa dela,
+   então os espaços iguais contam a assinatura inteira, não só a foto.
+   Os 11px de cima compensam a área de toque dos links, que é maior que o texto */
+.quadro {
+    position: relative;
+    width: var(--w);
+    margin: calc(max(0px, var(--assin) * 0.5 - var(--w) * 0.65) + 11px) 0 calc(max(0px, var(--assin) * 0.52 - var(--w) * 0.6));
+}
 .foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
 .assinatura {
     position: absolute;
@@ -76,13 +84,11 @@ ul { list-style: none; margin: 0; padding: 0; }
     pointer-events: none;
 }
 
-/* os links começam onde a ponta de baixo da assinatura termina */
 .links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0 28px;
-    margin-top: calc(max(0px, var(--assin) * 0.52 - var(--w) * 0.6) + clamp(16px, 2.4vw, 28px));
 }
 .links ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 16px; }
 .links a { display: inline-flex; align-items: center; min-height: 40px; }
@@ -97,7 +103,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 @media (max-width: 640px) {
     .cidade { display: block; }
-    .palco { --w: min(72vw, calc((var(--alto) - 348px) * 0.8)); }
+    /* foto menor no celular: a assinatura fica uma vez e meia maior que ela, como no computador */
+    .palco { --w: min(58vw, calc((var(--alto) - 330px) * 0.8)); }
     .links { flex-direction: column; align-items: center; gap: 0; }
     .links ul { gap: 0 14px; }
     .links a { min-height: 36px; }
