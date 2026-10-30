@@ -11,703 +11,625 @@
     <meta property="og:description" content="Casamentos, pré-weddings, festas, ensaios e marcas em Ribeirão Preto, SP.">
     <meta property="og:image" content="https://okaiquemota.com.br/fotografia/img/vs-10-1080.jpg">
     <link rel="icon" href="../assets/img/assinatura.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;1,400&display=swap">
+    <link rel="preload" href="fontes/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fontes/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="img/vs-10-1080.jpg" as="image" imagesrcset="img/vs-10-720.jpg 720w, img/vs-10-1080.jpg 1080w" imagesizes="(max-width: 860px) 100vw, 50vw" fetchpriority="high">
     <link rel="stylesheet" href="fotografia.css">
+    <script src="fotografia.js" defer></script>
 </head>
 <body>
-    <header class="topo wrap">
-        <a class="marca" href="./">Kaique Mota</a>
-        <nav class="menu" aria-label="Seções">
-            <a href="#trabalhos">Trabalhos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#investimento">Investimento</a>
-            <a href="#contato">Contato</a>
-        </nav>
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-dir" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+        <symbol id="i-esq" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+        <symbol id="i-diag" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+        <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+        <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+        <symbol id="i-cima" viewBox="0 0 24 24"><path d="M12 20V5M6 11l6-6 6 6"/></symbol>
+    </svg>
+
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo">
+        <div class="topo-dentro wrap">
+            <a class="marca" href="./">Kaique Mota</a>
+            <nav class="menu" aria-label="Principal">
+                <ul>
+                    <li><a href="#trabalhos">Trabalhos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#como-funciona">Como funciona</a></li>
+                    <li><a href="#investimento">Investimento</a></li>
+                </ul>
+                <a class="botao botao-pequeno" href="#contato">Consultar data</a>
+            </nav>
+            <button class="abre-menu" type="button" aria-haspopup="dialog" aria-controls="menu-celular" aria-expanded="false">
+                Menu <span class="tracos" aria-hidden="true"></span>
+            </button>
+        </div>
     </header>
 
-    <main>
-        <!-- Abertura: uma foto e a apresentação ao lado -->
-        <section class="abertura wrap" aria-labelledby="abertura-titulo">
-            <figure class="abertura-foto">
-                <img src="img/vs-10-1080.jpg" srcset="img/vs-10-720.jpg 720w, img/vs-10-1080.jpg 1080w" sizes="(max-width: 640px) 100vw, 50vw" alt="O casal se abraçando ao longe, entre palmeiras e árvores" width="1080" height="1350" loading="eager" decoding="async" fetchpriority="high">
-            </figure>
-            <div class="abertura-texto">
-                <span class="assinatura" role="img" aria-label="Assinatura do Kaique Mota"></span>
-                <h1 class="frase-grande" id="abertura-titulo">Fotografia de casamentos, <span class="junto">pré-weddings</span>, festas, ensaios e marcas.</h1>
-                <p class="linha-fina">Com calma, luz natural e atenção aos detalhes. Ribeirão Preto, SP, e onde a sua história acontecer.</p>
-                <a class="link" href="#contato">Consultar data →</a>
+    <dialog class="menu-celular" id="menu-celular" aria-label="Menu">
+        <div class="menu-celular-topo">
+            <span class="marca" aria-hidden="true">Kaique Mota</span>
+            <button class="fecha-menu" type="button">Fechar <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-fechar"></use></svg></button>
+        </div>
+        <nav aria-label="Principal">
+            <ul>
+                <li style="--i: 0"><a href="#trabalhos">Trabalhos</a></li>
+                <li style="--i: 1"><a href="#sobre">Sobre</a></li>
+                <li style="--i: 2"><a href="#como-funciona">Como funciona</a></li>
+                <li style="--i: 3"><a href="#investimento">Investimento</a></li>
+                <li style="--i: 4"><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="menu-celular-base">
+            <a href="https://wa.me/5516982157266?text=Oi%2C%20Kaique%21%20Vi%20seu%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></a>
+            <a href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">Instagram<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></a>
+        </div>
+    </dialog>
+
+    <main id="conteudo" tabindex="-1">
+        <section class="hero" aria-labelledby="hero-titulo">
+            <div class="hero-texto">
+                <span class="assinatura" aria-hidden="true"></span>
+                <p class="rotulo">Fotografia · Ribeirão Preto, SP</p>
+                <h1 class="hero-titulo" id="hero-titulo">Fotografia com calma, luz natural e <em>atenção aos detalhes.</em></h1>
+                <p class="hero-sub">Casamentos, pré-weddings, festas, ensaios e marcas.</p>
+                <div class="hero-acoes">
+                    <a class="botao" href="#contato">Consultar data <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                    <a class="botao botao-linha" href="#investimento">Ver pacotes</a>
+                </div>
+            </div>
+            <div class="hero-foto">
+                <img src="img/vs-10-1080.jpg" srcset="img/vs-10-720.jpg 720w, img/vs-10-1080.jpg 1080w" sizes="(max-width: 860px) 100vw, 50vw" alt="Casal abraçado ao longe, entre palmeiras e árvores" width="1080" height="1350" fetchpriority="high" decoding="async">
             </div>
         </section>
 
-        <section class="secao wrap" id="trabalhos" aria-labelledby="trabalhos-titulo">
-            <div class="secao-topo">
-                <p class="rotulo">Trabalhos</p>
-                <h2 class="titulo" id="trabalhos-titulo">Trabalhos recentes</h2>
-                <p class="linha-fina">Mais no Instagram, <a class="link" href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">@okaiquemota</a></p>
-            </div>
-            <div class="trabalhos">
-                <article class="trabalho">
-                    <header class="trabalho-topo">
-                        <p class="rotulo">Pré-wedding</p>
-                        <h3>Vinicius &amp; Stefany</h3>
-                    </header>
+        <section class="secao" id="trabalhos" aria-labelledby="trabalhos-titulo">
+            <div class="wrap">
+                <div class="secao-topo secao-topo-linha" data-revela>
+                    <div>
+                        <p class="rotulo">Trabalhos</p>
+                        <h2 class="titulo" id="trabalhos-titulo">Trabalhos <em>recentes</em></h2>
+                    </div>
+                    <a class="link" href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">Mais no Instagram<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></a>
+                </div>
+                <article class="trabalho" aria-labelledby="trabalho-1">
                     <div class="faixa">
-                        <button class="quadro" type="button" data-foto="11" aria-label="Ampliar: Stefany e Vinicius correndo de mãos dadas na grama"><img src="img/vs-11-1080.jpg" srcset="img/vs-11-720.jpg 720w, img/vs-11-1080.jpg 1080w" sizes="(max-width: 640px) 45vw, 23vw" alt="Stefany e Vinicius correndo de mãos dadas na grama" width="1080" height="1350" loading="lazy" decoding="async"></button>
-                        <button class="quadro" type="button" data-foto="03" aria-label="Ampliar: Detalhe de flores cor-de-rosa num galho"><img src="img/vs-03-1080.jpg" srcset="img/vs-03-720.jpg 720w, img/vs-03-1080.jpg 1080w" sizes="(max-width: 640px) 45vw, 23vw" alt="Detalhe de flores cor-de-rosa num galho" width="1080" height="1350" loading="lazy" decoding="async"></button>
-                        <button class="quadro" type="button" data-foto="16" aria-label="Ampliar: Stefany encostada no ombro de Vinicius, de olhos fechados"><img src="img/vs-16-1080.jpg" srcset="img/vs-16-720.jpg 720w, img/vs-16-1080.jpg 1080w" sizes="(max-width: 640px) 45vw, 23vw" alt="Stefany encostada no ombro de Vinicius, de olhos fechados" width="1080" height="1350" loading="lazy" decoding="async"></button>
-                        <button class="quadro" type="button" data-foto="08" aria-label="Ampliar: Vinicius beija a testa de Stefany na luz do fim da tarde"><img src="img/vs-08-1080.jpg" srcset="img/vs-08-720.jpg 720w, img/vs-08-1080.jpg 1080w" sizes="(max-width: 640px) 45vw, 23vw" alt="Vinicius beija a testa de Stefany na luz do fim da tarde" width="1080" height="1350" loading="lazy" decoding="async"></button>
+                        <button class="quadro" type="button" data-revela style="--atraso: 0ms" data-grande="img/vs-11-1080.jpg" aria-label="Ampliar foto: Casal correndo de mãos dadas na grama"><img src="img/vs-11-1080.jpg" srcset="img/vs-11-720.jpg 720w, img/vs-11-1080.jpg 1080w" sizes="(max-width: 640px) 46vw, 24vw" alt="Casal correndo de mãos dadas na grama" width="1080" height="1350" loading="lazy" decoding="async"><span class="quadro-icone" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mais"></use></svg></span></button>
+                        <button class="quadro" type="button" data-revela style="--atraso: 90ms" data-grande="img/vs-03-1080.jpg" aria-label="Ampliar foto: Detalhe de flores cor-de-rosa num galho"><img src="img/vs-03-1080.jpg" srcset="img/vs-03-720.jpg 720w, img/vs-03-1080.jpg 1080w" sizes="(max-width: 640px) 46vw, 24vw" alt="Detalhe de flores cor-de-rosa num galho" width="1080" height="1350" loading="lazy" decoding="async"><span class="quadro-icone" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mais"></use></svg></span></button>
+                        <button class="quadro" type="button" data-revela style="--atraso: 180ms" data-grande="img/vs-16-1080.jpg" aria-label="Ampliar foto: Ela encostada no ombro dele, de olhos fechados"><img src="img/vs-16-1080.jpg" srcset="img/vs-16-720.jpg 720w, img/vs-16-1080.jpg 1080w" sizes="(max-width: 640px) 46vw, 24vw" alt="Ela encostada no ombro dele, de olhos fechados" width="1080" height="1350" loading="lazy" decoding="async"><span class="quadro-icone" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mais"></use></svg></span></button>
+                        <button class="quadro" type="button" data-revela style="--atraso: 270ms" data-grande="img/vs-08-1080.jpg" aria-label="Ampliar foto: Casal abraçado na luz do fim da tarde, ele beija a testa dela"><img src="img/vs-08-1080.jpg" srcset="img/vs-08-720.jpg 720w, img/vs-08-1080.jpg 1080w" sizes="(max-width: 640px) 46vw, 24vw" alt="Casal abraçado na luz do fim da tarde, ele beija a testa dela" width="1080" height="1350" loading="lazy" decoding="async"><span class="quadro-icone" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mais"></use></svg></span></button>
+                    </div>
+                    <div class="trabalho-legenda" data-revela>
+                        <h3 id="trabalho-1">Vinicius &amp; Stefany</h3>
+                        <p>Pré-wedding</p>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section class="secao wrap" id="sobre" aria-labelledby="sobre-titulo">
-            <div class="sobre">
-                <figure class="retrato">
-                    <img src="img/kaique-1080.jpg" srcset="img/kaique-720.jpg 720w, img/kaique-1080.jpg 864w" sizes="(max-width: 640px) 82vw, 40vw" alt="Kaique Mota de boné, fotografando com uma câmera Canon, em preto e branco" width="864" height="1080" loading="lazy" decoding="async">
+        <section class="secao" id="sobre" aria-labelledby="sobre-titulo">
+            <div class="wrap sobre">
+                <figure class="retrato" data-revela>
+                    <img src="img/kaique-1080.jpg" srcset="img/kaique-720.jpg 720w, img/kaique-1080.jpg 864w" sizes="(max-width: 860px) 90vw, 40vw" alt="Kaique Mota de boné, fotografando com uma câmera Canon, em preto e branco" width="864" height="1080" loading="lazy" decoding="async">
                 </figure>
-                <div class="texto">
+                <div class="sobre-texto" data-revela style="--atraso: 120ms">
                     <p class="rotulo">Sobre</p>
-                    <h2 class="titulo" id="sobre-titulo">Oi, eu sou o Kaique.</h2>
+                    <h2 class="titulo" id="sobre-titulo">Oi, eu sou <em>o Kaique.</em></h2>
                     <p>Sou fotógrafo em Ribeirão Preto. Fotografo casamentos, pré-weddings, ensaios, festas e marcas, e o que eu gosto mesmo é de gente de verdade: o abraço que escapa entre uma pose e outra, a risada, a luz do fim da tarde.</p>
-                    <p>Antes, a gente combina o lugar, as roupas e o que vocês querem lembrar. No dia, eu cuido da direção do começo ao fim, para vocês só aproveitarem.</p>
-                    <a class="link" href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">@okaiquemota no Instagram ↗</a>
+                    <p>Antes, a gente combina o lugar, as roupas e o que você quer lembrar. No dia, eu cuido da direção do começo ao fim, para você só aproveitar.</p>
+                    <span class="assinatura" aria-hidden="true"></span>
+                    <a class="link" href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">@okaiquemota no Instagram<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></a>
                 </div>
             </div>
         </section>
 
-        <section class="secao wrap" id="como-funciona" aria-labelledby="como-titulo">
-            <div class="secao-topo">
-                <p class="rotulo">Como funciona</p>
-                <h2 class="titulo" id="como-titulo">Do primeiro oi à entrega</h2>
-            </div>
-            <ol class="passos">
-                <li class="passo">
-                    <span class="rotulo">01</span>
-                    <h3>Conversa</h3>
-                    <p>Você me chama no WhatsApp com a data, o local e o tipo de foto. Eu confirmo a agenda e te mando os pacotes.</p>
-                </li>
-                <li class="passo">
-                    <span class="rotulo">02</span>
-                    <h3>Reserva</h3>
-                    <p>A data fica garantida com o sinal de 30% e a assinatura do contrato. O restante é pago no dia.</p>
-                </li>
-                <li class="passo">
-                    <span class="rotulo">03</span>
-                    <h3>O dia</h3>
-                    <p>Eu chego no horário combinado e cuido da direção do começo ao fim, para vocês só aproveitarem.</p>
-                </li>
-                <li class="passo">
-                    <span class="rotulo">04</span>
-                    <h3>Entrega</h3>
-                    <p>As fotos selecionadas e editadas chegam em alta resolução pelo Google Drive, no prazo do pacote.</p>
-                </li>
-            </ol>
-            <details class="condicoes">
-                <summary>Todas as condições</summary>
-                <ol>
-                    <li>
+        <section class="secao" id="como-funciona" aria-labelledby="como-titulo">
+            <div class="wrap">
+                <div class="secao-topo" data-revela>
+                    <p class="rotulo">Como funciona</p>
+                    <h2 class="titulo" id="como-titulo">Do primeiro oi <em>à entrega</em></h2>
+                </div>
+                <ol class="passos">
+                    <li class="passo" data-revela style="--atraso: 0ms">
+                        <span class="passo-num" aria-hidden="true">01</span>
+                        <h3>Conversa</h3>
+                        <p>Você me chama no WhatsApp com a data, o local e o tipo de foto. Eu confirmo a agenda e te mando os pacotes.</p>
+                    </li>
+                    <li class="passo" data-revela style="--atraso: 110ms">
+                        <span class="passo-num" aria-hidden="true">02</span>
                         <h3>Reserva</h3>
-                        <p>A data fica garantida após o sinal de 30% e a assinatura do contrato. O restante é pago no dia do evento ou do ensaio.</p>
+                        <p>A data fica garantida com o sinal de 30% e a assinatura do contrato. O restante é pago no dia.</p>
                     </li>
-                    <li>
-                        <h3>Horas de cobertura</h3>
-                        <p>Contam a partir da chegada do fotógrafo. Making of e mini ensaio fazem parte do total de horas do pacote.</p>
+                    <li class="passo" data-revela style="--atraso: 220ms">
+                        <span class="passo-num" aria-hidden="true">03</span>
+                        <h3>O dia</h3>
+                        <p>Eu chego no horário combinado e cuido da direção do começo ao fim, para você só aproveitar.</p>
                     </li>
-                    <li>
-                        <h3>Hora adicional</h3>
-                        <p>Combinada no dia, conforme a disponibilidade. Quando o tipo de foto oferece, o valor aparece embaixo dos pacotes.</p>
-                    </li>
-                    <li>
+                    <li class="passo" data-revela style="--atraso: 330ms">
+                        <span class="passo-num" aria-hidden="true">04</span>
                         <h3>Entrega</h3>
-                        <p>Fotos em alta resolução via Google Drive, dentro do prazo de cada pacote. O link fica disponível por 90 dias.</p>
-                    </li>
-                    <li>
-                        <h3>Seleção e edição</h3>
-                        <p>São entregues as fotos selecionadas e editadas. Arquivos brutos (RAW) e o total de fotos capturadas não fazem parte da entrega.</p>
-                    </li>
-                    <li>
-                        <h3>Deslocamento</h3>
-                        <p>Incluso em Ribeirão Preto. Eventos e ensaios em outras cidades têm o deslocamento combinado à parte.</p>
-                    </li>
-                    <li>
-                        <h3>Remarcação e cancelamento</h3>
-                        <p>Seguem as condições do contrato assinado na reserva.</p>
-                    </li>
-                    <li>
-                        <h3>Valores</h3>
-                        <p>Valores de 2026. Precisa de algo fora dos pacotes? Me chama que a gente monta junto.</p>
+                        <p>As fotos selecionadas e editadas chegam em alta resolução pelo Google Drive, no prazo do pacote.</p>
                     </li>
                 </ol>
-            </details>
+            </div>
         </section>
 
-        <section class="secao wrap" id="investimento" aria-labelledby="investimento-titulo">
-            <div class="investimento">
-                <div class="secao-topo">
+        <section class="secao" id="investimento" aria-labelledby="investimento-titulo">
+            <div class="wrap">
+                <div class="secao-topo" data-revela>
                     <p class="rotulo">Investimento</p>
-                    <h2 class="titulo" id="investimento-titulo">Pacotes 2026</h2>
-                    <p class="linha-fina">Escolha o tipo de foto para ver os pacotes. Precisa de algo diferente? A gente monta junto.</p>
+                    <h2 class="titulo" id="investimento-titulo">Pacotes <em>2026</em></h2>
+                    <p class="secao-sub">Escolha o tipo de foto. Precisa de algo diferente? A gente monta junto.</p>
                 </div>
-                <div class="sumario">
-                <details class="categoria" id="casamento">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Casamento</span><span class="cat-resumo">Civil, Clássico e Completo</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 690</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">Do primeiro preparativo à última música: o seu dia contado com naturalidade e atenção aos detalhes.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Casamento Civil</h4>
-                                    <p class="frase">Para cerimônias no cartório ou celebrações intimistas.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 690</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 2h de cobertura</li>
-                                <li>Cerimônia, assinaturas e cumprimentos</li>
-                                <li>Retratos do casal</li>
-                                <li>Fotos com família e padrinhos</li>
-                                <li>120 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 15 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Casamento Clássico</h4>
-                                    <p class="frase">O grande dia por dois olhares, dos preparativos à pista de dança.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 1.890</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Dupla de fotógrafos durante todo o dia</li>
-                                <li>Até 6h de cobertura</li>
-                                <li>Making of da noiva e do noivo</li>
-                                <li>Cerimônia por dois ângulos: entrada, votos, alianças e reações</li>
-                                <li>Retratos do casal e fotos com família e padrinhos</li>
-                                <li>Recepção, decoração, brinde, bolo, primeira dança e pista</li>
-                                <li>400 fotos editadas</li>
-                                <li>Prévia com 20 fotos em até 72h</li>
-                                <li>Entrega via Google Drive em até 30 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Casamento Completo</h4>
-                                    <p class="frase">A história inteira, do pré-wedding ao fim da festa.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 3.490</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Tudo do Casamento Clássico, com a dupla de fotógrafos</li>
-                                <li>Até 8h de cobertura</li>
-                                <li>Ensaio pré-wedding (1h30, 40 fotos editadas), em data à parte</li>
-                                <li>600 fotos editadas</li>
-                                <li>Prévia com 30 fotos em até 72h</li>
-                                <li>Entrega via Google Drive em até 45 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Hora adicional R$ 200 · Álbum impresso sob consulta</p>
-                    </div>
-                </details>
-                <details class="categoria" id="pre-wedding">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Pré-wedding</span><span class="cat-resumo">O ensaio do casal antes do grande dia</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 350</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">O ensaio do casal antes do grande dia: para o save the date, o convite, o telão da festa ou só para guardar.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Pré-wedding Essencial</h4>
-                                    <p class="frase">Um ensaio leve, com as fotos certas para o save the date.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 350</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>1h de ensaio</li>
-                                <li>1 local</li>
-                                <li>1 troca de roupa</li>
-                                <li>Direção do casal durante todo o ensaio</li>
-                                <li>25 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 7 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Pré-wedding Clássico</h4>
-                                    <p class="frase">Tempo e cenários para contar a história de vocês.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 450</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>1h30 de ensaio</li>
-                                <li>Até 2 locais próximos</li>
-                                <li>Até 2 trocas de roupa</li>
-                                <li>Conversa antes do ensaio para escolher locais, roupas e referências</li>
-                                <li>Direção do casal durante todo o ensaio</li>
-                                <li>40 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Pré-wedding Completo</h4>
-                                    <p class="frase">Planejado do começo ao fim, até o horário do pôr do sol.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 650</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 2h30 de ensaio</li>
-                                <li>Até 3 locais próximos</li>
-                                <li>Até 3 trocas de roupa</li>
-                                <li>Planejamento completo: locais, roupas, referências e horário da melhor luz</li>
-                                <li>70 fotos editadas</li>
-                                <li>Prévia com 10 fotos em até 48h</li>
-                                <li>Entrega via Google Drive em até 15 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">O Pré-wedding Clássico já vem incluso no Casamento Completo</p>
-                    </div>
-                </details>
-                <details class="categoria" id="festas">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Festas</span><span class="cat-resumo">15 anos, chás, batizados, formaturas e confraternizações</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 520</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">15 anos, chás, batizados, formaturas e confraternizações: celebrações que merecem ser lembradas.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Festa Essencial</h4>
-                                    <p class="frase">Ideal para chás de bebê, chás revelação e batizados.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 520</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 3h de cobertura</li>
-                                <li>Decoração e detalhes antes da chegada dos convidados</li>
-                                <li>Momentos principais: revelação, bênção e discursos</li>
-                                <li>Fotos com família e convidados</li>
-                                <li>150 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Festa Clássica</h4>
-                                    <p class="frase">Para festas com programação completa, do começo ao fim.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 850</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 5h de cobertura</li>
-                                <li>Decoração, detalhes e convidados</li>
-                                <li>Entrada, homenagens, parabéns e pista</li>
-                                <li>Fotos de grupos por mesa, conforme o andamento da festa</li>
-                                <li>250 fotos editadas</li>
-                                <li>Prévia com 15 fotos em até 48h</li>
-                                <li>Entrega via Google Drive em até 15 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Festa Completa</h4>
-                                    <p class="frase">Pensado para festas de 15 anos e grandes celebrações.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 1.290</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 7h de cobertura, com making of e mini ensaio inclusos</li>
-                                <li>Making of da aniversariante: cabelo, maquiagem e vestido</li>
-                                <li>Mini ensaio no local antes da festa (30 min)</li>
-                                <li>Cerimonial completo: entrada, valsa, troca do sapato, homenagens e pista</li>
-                                <li>350 fotos editadas + 20 do mini ensaio</li>
-                                <li>Prévia com 20 fotos em até 48h</li>
-                                <li>Entrega via Google Drive em até 20 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Hora adicional R$ 150 · Segundo fotógrafo + R$ 300</p>
-                    </div>
-                </details>
-                <details class="categoria" id="aniversarios">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Aniversários</span><span class="cat-resumo">Em casa, salão ou buffet</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 350</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">Do primeiro aninho aos 80: festa em casa, salão ou buffet.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Aniversário Essencial</h4>
-                                    <p class="frase">Para festas em casa ou mais intimistas.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 350</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 2h de cobertura</li>
-                                <li>Mesa do bolo e decoração</li>
-                                <li>Aniversariante, família e convidados</li>
-                                <li>Parabéns</li>
-                                <li>100 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 7 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Aniversário Clássico</h4>
-                                    <p class="frase">A festa completa, da chegada dos convidados ao parabéns.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 490</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 3h de cobertura</li>
-                                <li>Decoração e detalhes antes da chegada dos convidados</li>
-                                <li>Fotos espontâneas: brincadeiras, conversas, crianças em ação</li>
-                                <li>Fotos com família e grupos</li>
-                                <li>Parabéns e momentos principais</li>
-                                <li>150 fotos editadas</li>
-                                <li>Prévia com 10 fotos no dia seguinte</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Aniversário Completo</h4>
-                                    <p class="frase">Tudo registrado, inclusive antes de a festa começar.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 690</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 4h de cobertura, com o mini ensaio incluso</li>
-                                <li>Mini ensaio do aniversariante (30 min, antes da festa)</li>
-                                <li>Cobertura completa da festa</li>
-                                <li>200 fotos editadas + 15 do mini ensaio</li>
-                                <li>Prévia com 15 fotos em até 24h</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Hora adicional R$ 150 · Segundo fotógrafo + R$ 300</p>
-                    </div>
-                </details>
-                <details class="categoria" id="making-of">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Making of</span><span class="cat-resumo">Preparativos de noivas, debutantes e formandas</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 320</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">Os preparativos de noivas, debutantes e formandas: cabelo, maquiagem, vestido e a ansiedade boa antes da festa.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Making of Essencial</h4>
-                                    <p class="frase">Só os preparativos, mesmo que outro fotógrafo cubra o evento.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 320</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 1h30 de cobertura</li>
-                                <li>Cabelo e maquiagem</li>
-                                <li>Detalhes: vestido, sapatos, joias e acessórios</li>
-                                <li>Momento de vestir</li>
-                                <li>50 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Making of Clássico</h4>
-                                    <p class="frase">Os preparativos completos e os primeiros retratos já pronta.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 480</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 2h30 de cobertura</li>
-                                <li>Cabelo, maquiagem e momento de vestir</li>
-                                <li>Detalhes: vestido, sapatos, joias, buquê e convite</li>
-                                <li>Fotos com mãe, madrinhas e amigas</li>
-                                <li>Retratos depois de pronta</li>
-                                <li>90 fotos editadas</li>
-                                <li>Prévia com 10 fotos em até 24h</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Making of Completo</h4>
-                                    <p class="frase">Do primeiro pincel até a chegada ao local da cerimônia ou da festa.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 650</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>Até 3h30 de cobertura</li>
-                                <li>Tudo do Making of Clássico</li>
-                                <li>Mini ensaio depois de pronta (20 min)</li>
-                                <li>Saída de casa e chegada ao local</li>
-                                <li>130 fotos editadas</li>
-                                <li>Prévia com 15 fotos em até 24h</li>
-                                <li>Entrega via Google Drive em até 15 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Hora adicional R$ 150 · Também para noivos e formandos</p>
-                    </div>
-                </details>
-                <details class="categoria" id="ensaios">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Ensaios</span><span class="cat-resumo">Individual, casal, gestante, família e 15 anos</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 250</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">Individual, casal, gestante, família ou 15 anos: um momento só seu, sem pressa.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Ensaio Essencial</h4>
-                                    <p class="frase">Fotos novas de um jeito simples e rápido.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 250</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>1h de ensaio</li>
-                                <li>1 local, externo ou na sua casa</li>
-                                <li>1 troca de roupa</li>
-                                <li>Direção de poses durante todo o ensaio</li>
-                                <li>20 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 7 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote recomendado">
-                            <span class="selo">Recomendado</span>
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Ensaio Clássico</h4>
-                                    <p class="frase">Mais tempo e mais cenários para contar a sua história.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 390</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>1h30 de ensaio</li>
-                                <li>Até 2 locais próximos</li>
-                                <li>Até 2 trocas de roupa</li>
-                                <li>Conversa antes do ensaio para escolher locais, roupas e referências</li>
-                                <li>Direção de poses durante todo o ensaio</li>
-                                <li>40 fotos editadas</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 03</p>
-                                    <h4>Ensaio Completo</h4>
-                                    <p class="frase">Pensado para books de 15 anos, gestantes e ocasiões especiais.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 540</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>2h de ensaio</li>
-                                <li>Até 3 locais próximos</li>
-                                <li>Até 3 trocas de roupa</li>
-                                <li>Planejamento completo: locais, roupas, referências e o horário da melhor luz</li>
-                                <li>60 fotos editadas</li>
-                                <li>Prévia com 10 fotos em até 48h</li>
-                                <li>Entrega via Google Drive em até 10 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Foto editada extra R$ 10</p>
-                    </div>
-                </details>
-                <details class="categoria" id="marcas">
-                    <summary>
-                        <span class="cat-texto"><span class="cat-nome">Marcas e negócios</span><span class="cat-resumo">Retrato profissional e conteúdo para marca</span></span>
-                        <span class="cat-preco"><small>a partir de</small> R$ 200</span>
-                        <span class="mais" aria-hidden="true"></span>
-                    </summary>
-                    <div class="cat-corpo">
-                        <p class="cat-intro">Para lojas, restaurantes, clínicas e profissionais mostrarem o que fazem de melhor.</p>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 01</p>
-                                    <h4>Retrato Profissional</h4>
-                                    <p class="frase">Para LinkedIn, perfil e site: uma imagem que passa confiança.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 200</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>40 min de sessão</li>
-                                <li>1 local, no seu trabalho ou ao ar livre</li>
-                                <li>Até 2 trocas de roupa</li>
-                                <li>Direção de pose e expressão</li>
-                                <li>10 fotos editadas</li>
-                                <li>Versão quadrada para foto de perfil</li>
-                                <li>Entrega via Google Drive em até 5 dias</li>
-                            </ul>
-                        </article>
-                        <article class="pacote">
-                            <div class="pacote-topo">
-                                <div class="pacote-nome">
-                                    <p class="rotulo">Pacote 02</p>
-                                    <h4>Conteúdo para Marca</h4>
-                                    <p class="frase">Fotos do seu negócio para o Instagram, o site e os anúncios.</p>
-                                </div>
-                                <div class="preco">
-                                    <p class="valor">R$ 450</p>
-                                    <p class="investimento-rotulo">investimento</p>
-                                </div>
-                            </div>
-                            <ul class="itens">
-                                <li>1h30 de sessão no seu espaço</li>
-                                <li>Conversa antes para planejar as fotos que a marca precisa</li>
-                                <li>Ambiente, fachada e detalhes</li>
-                                <li>Produtos ou pratos</li>
-                                <li>Equipe trabalhando e atendendo</li>
-                                <li>Retratos de quem está à frente do negócio</li>
-                                <li>30 fotos editadas, pensadas para feed, stories e site</li>
-                                <li>Entrega via Google Drive em até 7 dias</li>
-                            </ul>
-                        </article>
-                        <p class="cat-nota">Hora adicional R$ 150 · Retratos de equipe e eventos corporativos sob consulta</p>
-                    </div>
-                </details>
+                <div class="abas" aria-label="Tipo de foto" hidden></div>
+                <div class="paineis" data-revela>
+                    <section class="painel" id="casamento" data-aba="Casamento" aria-labelledby="painel-casamento">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-casamento">Casamento</h3>
+                            <p class="painel-intro">Do primeiro preparativo à última música: o seu dia contado com naturalidade e atenção aos detalhes.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-casamento-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-casamento-1">Casamento Civil</h4>
+                                <p class="frase">Para cerimônias no cartório ou celebrações intimistas.</p>
+                                <p class="preco"><span class="valor">R$ 690</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 2h de cobertura</li>
+                                    <li>Cerimônia, assinaturas e cumprimentos</li>
+                                    <li>Retratos do casal</li>
+                                    <li>Fotos com família e padrinhos</li>
+                                    <li>120 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 15 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Casamento" data-pacote="Casamento Civil">Quero este<span class="visualmente-escondido"> pacote: Casamento Civil</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-casamento-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-casamento-2">Casamento Clássico</h4>
+                                <p class="frase">O grande dia por dois olhares, dos preparativos à pista de dança.</p>
+                                <p class="preco"><span class="valor">R$ 1.890</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Dupla de fotógrafos durante todo o dia</li>
+                                    <li>Até 6h de cobertura</li>
+                                    <li>Making of da noiva e do noivo</li>
+                                    <li>Cerimônia por dois ângulos: entrada, votos, alianças e reações</li>
+                                    <li>Retratos do casal e fotos com família e padrinhos</li>
+                                    <li>Recepção, decoração, brinde, bolo, primeira dança e pista</li>
+                                    <li>400 fotos editadas</li>
+                                    <li>Prévia com 20 fotos em até 72h</li>
+                                    <li>Entrega via Google Drive em até 30 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Casamento" data-pacote="Casamento Clássico">Quero este<span class="visualmente-escondido"> pacote: Casamento Clássico</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-casamento-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-casamento-3">Casamento Completo</h4>
+                                <p class="frase">A história inteira, do pré-wedding ao fim da festa.</p>
+                                <p class="preco"><span class="valor">R$ 3.490</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Tudo do Casamento Clássico, com a dupla de fotógrafos</li>
+                                    <li>Até 8h de cobertura</li>
+                                    <li>Ensaio pré-wedding (1h30, 40 fotos editadas), em data à parte</li>
+                                    <li>600 fotos editadas</li>
+                                    <li>Prévia com 30 fotos em até 72h</li>
+                                    <li>Entrega via Google Drive em até 45 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Casamento" data-pacote="Casamento Completo">Quero este<span class="visualmente-escondido"> pacote: Casamento Completo</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Hora adicional R$ 200 · Álbum impresso sob consulta</p>
+                    </section>
+                    <section class="painel" id="pre-wedding" data-aba="Pré-wedding" aria-labelledby="painel-pre-wedding">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-pre-wedding">Pré-wedding</h3>
+                            <p class="painel-intro">O ensaio do casal antes do grande dia: para o save the date, o convite, o telão da festa ou só para guardar.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-pre-wedding-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-pre-wedding-1">Pré-wedding Essencial</h4>
+                                <p class="frase">Um ensaio leve, com as fotos certas para o save the date.</p>
+                                <p class="preco"><span class="valor">R$ 350</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>1h de ensaio</li>
+                                    <li>1 local</li>
+                                    <li>1 troca de roupa</li>
+                                    <li>Direção do casal durante todo o ensaio</li>
+                                    <li>25 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 7 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Pré-wedding" data-pacote="Pré-wedding Essencial">Quero este<span class="visualmente-escondido"> pacote: Pré-wedding Essencial</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-pre-wedding-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-pre-wedding-2">Pré-wedding Clássico</h4>
+                                <p class="frase">Tempo e cenários para contar a história de vocês.</p>
+                                <p class="preco"><span class="valor">R$ 450</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>1h30 de ensaio</li>
+                                    <li>Até 2 locais próximos</li>
+                                    <li>Até 2 trocas de roupa</li>
+                                    <li>Conversa antes do ensaio para escolher locais, roupas e referências</li>
+                                    <li>Direção do casal durante todo o ensaio</li>
+                                    <li>40 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Pré-wedding" data-pacote="Pré-wedding Clássico">Quero este<span class="visualmente-escondido"> pacote: Pré-wedding Clássico</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-pre-wedding-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-pre-wedding-3">Pré-wedding Completo</h4>
+                                <p class="frase">Planejado do começo ao fim, até o horário do pôr do sol.</p>
+                                <p class="preco"><span class="valor">R$ 650</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 2h30 de ensaio</li>
+                                    <li>Até 3 locais próximos</li>
+                                    <li>Até 3 trocas de roupa</li>
+                                    <li>Planejamento completo: locais, roupas, referências e horário da melhor luz</li>
+                                    <li>70 fotos editadas</li>
+                                    <li>Prévia com 10 fotos em até 48h</li>
+                                    <li>Entrega via Google Drive em até 15 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Pré-wedding" data-pacote="Pré-wedding Completo">Quero este<span class="visualmente-escondido"> pacote: Pré-wedding Completo</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">O Pré-wedding Clássico já vem incluso no Casamento Completo</p>
+                    </section>
+                    <section class="painel" id="festas" data-aba="Festas" aria-labelledby="painel-festas">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-festas">Festas</h3>
+                            <p class="painel-intro">15 anos, chás, batizados, formaturas e confraternizações: celebrações que merecem ser lembradas.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-festas-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-festas-1">Festa Essencial</h4>
+                                <p class="frase">Ideal para chás de bebê, chás revelação e batizados.</p>
+                                <p class="preco"><span class="valor">R$ 520</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 3h de cobertura</li>
+                                    <li>Decoração e detalhes antes da chegada dos convidados</li>
+                                    <li>Momentos principais: revelação, bênção e discursos</li>
+                                    <li>Fotos com família e convidados</li>
+                                    <li>150 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Festa" data-pacote="Festa Essencial">Quero este<span class="visualmente-escondido"> pacote: Festa Essencial</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-festas-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-festas-2">Festa Clássica</h4>
+                                <p class="frase">Para festas com programação completa, do começo ao fim.</p>
+                                <p class="preco"><span class="valor">R$ 850</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 5h de cobertura</li>
+                                    <li>Decoração, detalhes e convidados</li>
+                                    <li>Entrada, homenagens, parabéns e pista</li>
+                                    <li>Fotos de grupos por mesa, conforme o andamento da festa</li>
+                                    <li>250 fotos editadas</li>
+                                    <li>Prévia com 15 fotos em até 48h</li>
+                                    <li>Entrega via Google Drive em até 15 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Festa" data-pacote="Festa Clássica">Quero este<span class="visualmente-escondido"> pacote: Festa Clássica</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-festas-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-festas-3">Festa Completa</h4>
+                                <p class="frase">Pensado para festas de 15 anos e grandes celebrações.</p>
+                                <p class="preco"><span class="valor">R$ 1.290</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 7h de cobertura, com making of e mini ensaio inclusos</li>
+                                    <li>Making of da aniversariante: cabelo, maquiagem e vestido</li>
+                                    <li>Mini ensaio no local antes da festa (30 min)</li>
+                                    <li>Cerimonial completo: entrada, valsa, troca do sapato, homenagens e pista</li>
+                                    <li>350 fotos editadas + 20 do mini ensaio</li>
+                                    <li>Prévia com 20 fotos em até 48h</li>
+                                    <li>Entrega via Google Drive em até 20 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Festa" data-pacote="Festa Completa">Quero este<span class="visualmente-escondido"> pacote: Festa Completa</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Hora adicional R$ 150 · Segundo fotógrafo + R$ 300</p>
+                    </section>
+                    <section class="painel" id="aniversarios" data-aba="Aniversários" aria-labelledby="painel-aniversarios">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-aniversarios">Aniversários</h3>
+                            <p class="painel-intro">Do primeiro aninho aos 80: festa em casa, salão ou buffet.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-aniversarios-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-aniversarios-1">Aniversário Essencial</h4>
+                                <p class="frase">Para festas em casa ou mais intimistas.</p>
+                                <p class="preco"><span class="valor">R$ 350</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 2h de cobertura</li>
+                                    <li>Mesa do bolo e decoração</li>
+                                    <li>Aniversariante, família e convidados</li>
+                                    <li>Parabéns</li>
+                                    <li>100 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 7 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Aniversário" data-pacote="Aniversário Essencial">Quero este<span class="visualmente-escondido"> pacote: Aniversário Essencial</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-aniversarios-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-aniversarios-2">Aniversário Clássico</h4>
+                                <p class="frase">A festa completa, da chegada dos convidados ao parabéns.</p>
+                                <p class="preco"><span class="valor">R$ 490</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 3h de cobertura</li>
+                                    <li>Decoração e detalhes antes da chegada dos convidados</li>
+                                    <li>Fotos espontâneas: brincadeiras, conversas, crianças em ação</li>
+                                    <li>Fotos com família e grupos</li>
+                                    <li>Parabéns e momentos principais</li>
+                                    <li>150 fotos editadas</li>
+                                    <li>Prévia com 10 fotos no dia seguinte</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Aniversário" data-pacote="Aniversário Clássico">Quero este<span class="visualmente-escondido"> pacote: Aniversário Clássico</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-aniversarios-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-aniversarios-3">Aniversário Completo</h4>
+                                <p class="frase">Tudo registrado, inclusive antes de a festa começar.</p>
+                                <p class="preco"><span class="valor">R$ 690</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 4h de cobertura, com o mini ensaio incluso</li>
+                                    <li>Mini ensaio do aniversariante (30 min, antes da festa)</li>
+                                    <li>Cobertura completa da festa</li>
+                                    <li>200 fotos editadas + 15 do mini ensaio</li>
+                                    <li>Prévia com 15 fotos em até 24h</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Aniversário" data-pacote="Aniversário Completo">Quero este<span class="visualmente-escondido"> pacote: Aniversário Completo</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Hora adicional R$ 150 · Segundo fotógrafo + R$ 300</p>
+                    </section>
+                    <section class="painel" id="making-of" data-aba="Making of" aria-labelledby="painel-making-of">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-making-of">Making of</h3>
+                            <p class="painel-intro">Os preparativos de noivas, debutantes e formandas: cabelo, maquiagem, vestido e a ansiedade boa antes da festa.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-making-of-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-making-of-1">Making of Essencial</h4>
+                                <p class="frase">Só os preparativos, mesmo que outro fotógrafo cubra o evento.</p>
+                                <p class="preco"><span class="valor">R$ 320</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 1h30 de cobertura</li>
+                                    <li>Cabelo e maquiagem</li>
+                                    <li>Detalhes: vestido, sapatos, joias e acessórios</li>
+                                    <li>Momento de vestir</li>
+                                    <li>50 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Making of" data-pacote="Making of Essencial">Quero este<span class="visualmente-escondido"> pacote: Making of Essencial</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-making-of-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-making-of-2">Making of Clássico</h4>
+                                <p class="frase">Os preparativos completos e os primeiros retratos já pronta.</p>
+                                <p class="preco"><span class="valor">R$ 480</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 2h30 de cobertura</li>
+                                    <li>Cabelo, maquiagem e momento de vestir</li>
+                                    <li>Detalhes: vestido, sapatos, joias, buquê e convite</li>
+                                    <li>Fotos com mãe, madrinhas e amigas</li>
+                                    <li>Retratos depois de pronta</li>
+                                    <li>90 fotos editadas</li>
+                                    <li>Prévia com 10 fotos em até 24h</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Making of" data-pacote="Making of Clássico">Quero este<span class="visualmente-escondido"> pacote: Making of Clássico</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-making-of-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-making-of-3">Making of Completo</h4>
+                                <p class="frase">Do primeiro pincel até a chegada ao local da cerimônia ou da festa.</p>
+                                <p class="preco"><span class="valor">R$ 650</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>Até 3h30 de cobertura</li>
+                                    <li>Tudo do Making of Clássico</li>
+                                    <li>Mini ensaio depois de pronta (20 min)</li>
+                                    <li>Saída de casa e chegada ao local</li>
+                                    <li>130 fotos editadas</li>
+                                    <li>Prévia com 15 fotos em até 24h</li>
+                                    <li>Entrega via Google Drive em até 15 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Making of" data-pacote="Making of Completo">Quero este<span class="visualmente-escondido"> pacote: Making of Completo</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Hora adicional R$ 150 · Também para noivos e formandos</p>
+                    </section>
+                    <section class="painel" id="ensaios" data-aba="Ensaios" aria-labelledby="painel-ensaios">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-ensaios">Ensaios</h3>
+                            <p class="painel-intro">Individual, casal, gestante, família ou 15 anos: um momento só seu, sem pressa.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-ensaios-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-ensaios-1">Ensaio Essencial</h4>
+                                <p class="frase">Fotos novas de um jeito simples e rápido.</p>
+                                <p class="preco"><span class="valor">R$ 250</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>1h de ensaio</li>
+                                    <li>1 local, externo ou na sua casa</li>
+                                    <li>1 troca de roupa</li>
+                                    <li>Direção de poses durante todo o ensaio</li>
+                                    <li>20 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 7 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Ensaio" data-pacote="Ensaio Essencial">Quero este<span class="visualmente-escondido"> pacote: Ensaio Essencial</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote destaque" aria-labelledby="pac-ensaios-2">
+                                <p class="selo">Recomendado</p>
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-ensaios-2">Ensaio Clássico</h4>
+                                <p class="frase">Mais tempo e mais cenários para contar a sua história.</p>
+                                <p class="preco"><span class="valor">R$ 390</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>1h30 de ensaio</li>
+                                    <li>Até 2 locais próximos</li>
+                                    <li>Até 2 trocas de roupa</li>
+                                    <li>Conversa antes do ensaio para escolher locais, roupas e referências</li>
+                                    <li>Direção de poses durante todo o ensaio</li>
+                                    <li>40 fotos editadas</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao" href="#contato" data-tipo="Ensaio" data-pacote="Ensaio Clássico">Quero este<span class="visualmente-escondido"> pacote: Ensaio Clássico</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-ensaios-3">
+                                <p class="rotulo">Pacote 03</p>
+                                <h4 id="pac-ensaios-3">Ensaio Completo</h4>
+                                <p class="frase">Pensado para books de 15 anos, gestantes e ocasiões especiais.</p>
+                                <p class="preco"><span class="valor">R$ 540</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>2h de ensaio</li>
+                                    <li>Até 3 locais próximos</li>
+                                    <li>Até 3 trocas de roupa</li>
+                                    <li>Planejamento completo: locais, roupas, referências e o horário da melhor luz</li>
+                                    <li>60 fotos editadas</li>
+                                    <li>Prévia com 10 fotos em até 48h</li>
+                                    <li>Entrega via Google Drive em até 10 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Ensaio" data-pacote="Ensaio Completo">Quero este<span class="visualmente-escondido"> pacote: Ensaio Completo</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Foto editada extra R$ 10</p>
+                    </section>
+                    <section class="painel" id="marcas" data-aba="Marcas e negócios" aria-labelledby="painel-marcas">
+                        <div class="painel-topo">
+                            <h3 class="painel-nome" id="painel-marcas">Marcas e negócios</h3>
+                            <p class="painel-intro">Para lojas, restaurantes, clínicas e profissionais mostrarem o que fazem de melhor.</p>
+                        </div>
+                        <div class="pacotes">
+                            <article class="pacote" aria-labelledby="pac-marcas-1">
+                                <p class="rotulo">Pacote 01</p>
+                                <h4 id="pac-marcas-1">Retrato Profissional</h4>
+                                <p class="frase">Para LinkedIn, perfil e site: uma imagem que passa confiança.</p>
+                                <p class="preco"><span class="valor">R$ 200</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>40 min de sessão</li>
+                                    <li>1 local, no seu trabalho ou ao ar livre</li>
+                                    <li>Até 2 trocas de roupa</li>
+                                    <li>Direção de pose e expressão</li>
+                                    <li>10 fotos editadas</li>
+                                    <li>Versão quadrada para foto de perfil</li>
+                                    <li>Entrega via Google Drive em até 5 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Marca ou negócio" data-pacote="Retrato Profissional">Quero este<span class="visualmente-escondido"> pacote: Retrato Profissional</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                            <article class="pacote" aria-labelledby="pac-marcas-2">
+                                <p class="rotulo">Pacote 02</p>
+                                <h4 id="pac-marcas-2">Conteúdo para Marca</h4>
+                                <p class="frase">Fotos do seu negócio para o Instagram, o site e os anúncios.</p>
+                                <p class="preco"><span class="valor">R$ 450</span> <span class="preco-rotulo">investimento</span></p>
+                                <ul class="itens">
+                                    <li>1h30 de sessão no seu espaço</li>
+                                    <li>Conversa antes para planejar as fotos que a marca precisa</li>
+                                    <li>Ambiente, fachada e detalhes</li>
+                                    <li>Produtos ou pratos</li>
+                                    <li>Equipe trabalhando e atendendo</li>
+                                    <li>Retratos de quem está à frente do negócio</li>
+                                    <li>30 fotos editadas, pensadas para feed, stories e site</li>
+                                    <li>Entrega via Google Drive em até 7 dias</li>
+                                </ul>
+                                <a class="botao botao-linha" href="#contato" data-tipo="Marca ou negócio" data-pacote="Conteúdo para Marca">Quero este<span class="visualmente-escondido"> pacote: Conteúdo para Marca</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></a>
+                            </article>
+                        </div>
+                        <p class="painel-nota">Hora adicional R$ 150 · Retratos de equipe e eventos corporativos sob consulta</p>
+                    </section>
                 </div>
             </div>
         </section>
 
-        <section class="secao wrap" id="contato" aria-labelledby="contato-titulo">
-            <div class="contato">
-                <div class="intro">
-                    <span class="assinatura" role="img" aria-label="Assinatura do Kaique Mota"></span>
-                    <p class="rotulo">Contato</p>
-                    <h2 class="titulo" id="contato-titulo">Consultar data</h2>
-                    <p class="linha-fina">Me conta um pouco e a mensagem já sai pronta no WhatsApp.</p>
-                    <div class="direto">
-                        <a class="link" href="https://wa.me/5516982157266?text=Oi%2C%20Kaique%21%20Vi%20seu%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp (16) 98215-7266 ↗</a>
-                        <a class="link" href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">@okaiquemota ↗</a>
-                    </div>
+        <section class="secao" id="condicoes" aria-labelledby="condicoes-titulo">
+            <div class="wrap condicoes">
+                <div class="secao-topo" data-revela>
+                    <p class="rotulo">Condições</p>
+                    <h2 class="titulo" id="condicoes-titulo">Bom <em>saber</em></h2>
+                    <p class="secao-sub">O que vale para todos os pacotes.</p>
                 </div>
-                <form id="consulta" novalidate>
+                <div class="perguntas" data-revela style="--atraso: 120ms">
+                    <details class="pergunta">
+                        <summary><span>Reserva</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>A data fica garantida após o sinal de 30% e a assinatura do contrato. O restante é pago no dia do evento ou do ensaio.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Horas de cobertura</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Contam a partir da chegada do fotógrafo. Making of e mini ensaio fazem parte do total de horas do pacote.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Hora adicional</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Combinada no dia, conforme a disponibilidade. Quando o tipo de foto oferece, o valor aparece embaixo dos pacotes.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Entrega</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Fotos em alta resolução via Google Drive, dentro do prazo de cada pacote. O link fica disponível por 90 dias.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Seleção e edição</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>São entregues as fotos selecionadas e editadas. Arquivos brutos (RAW) e o total de fotos capturadas não fazem parte da entrega.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Deslocamento</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Incluso em Ribeirão Preto. Eventos e ensaios em outras cidades têm o deslocamento combinado à parte.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Remarcação e cancelamento</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Seguem as condições do contrato assinado na reserva.</p></div>
+                    </details>
+                    <details class="pergunta">
+                        <summary><span>Valores</span><span class="mais" aria-hidden="true"></span></summary>
+                        <div class="pergunta-corpo"><p>Valores de 2026. Precisa de algo fora dos pacotes? Me chama que a gente monta junto.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" id="contato" aria-labelledby="contato-titulo">
+            <div class="wrap contato">
+                <div class="contato-texto" data-revela>
+                    <p class="rotulo">Contato</p>
+                    <h2 class="titulo" id="contato-titulo">Consultar <em>data</em></h2>
+                    <p>Me conta um pouco e a mensagem já sai pronta no WhatsApp.</p>
+                    <ul class="direto">
+                        <li><a href="https://wa.me/5516982157266?text=Oi%2C%20Kaique%21%20Vi%20seu%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp <span>(16) 98215-7266<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></span></a></li>
+                        <li><a href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">Instagram <span>@okaiquemota<span class="visualmente-escondido"> (abre em nova aba)</span> <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></span></a></li>
+                    </ul>
+                </div>
+                <form class="formulario" id="consulta" novalidate data-whats="5516982157266" data-revela style="--atraso: 120ms">
                     <div class="campo">
                         <label for="f-nome">Seu nome</label>
-                        <input id="f-nome" name="nome" autocomplete="name" required>
+                        <input id="f-nome" name="nome" autocomplete="name" required aria-describedby="erro-nome">
+                        <p class="erro" id="erro-nome" hidden>Coloca o seu nome pra eu saber com quem estou falando.</p>
                     </div>
                     <div class="campo">
                         <label for="f-tipo">Tipo de foto</label>
                         <select id="f-tipo" name="tipo">
-                            <option>Casamento</option>
-                            <option>Pré-wedding</option>
-                            <option>Festa</option>
-                            <option>Aniversário</option>
-                            <option>Making of</option>
-                            <option>Ensaio</option>
-                            <option>Marca ou negócio</option>
-                            <option>Outro</option>
+                                <option>Casamento</option>
+                                <option>Pré-wedding</option>
+                                <option>Festa</option>
+                                <option>Aniversário</option>
+                                <option>Making of</option>
+                                <option>Ensaio</option>
+                                <option>Marca ou negócio</option>
+                                <option>Outro</option>
                         </select>
                     </div>
                     <div class="campo">
-                        <label for="f-data">Data</label>
+                        <label for="f-data">Data <small>(se já tiver)</small></label>
                         <input id="f-data" name="data" type="date">
                     </div>
                     <div class="campo">
@@ -715,98 +637,37 @@
                         <input id="f-local" name="local" autocomplete="address-level2">
                     </div>
                     <div class="campo inteiro">
-                        <label for="f-msg">Conte um pouco</label>
-                        <textarea id="f-msg" name="mensagem" rows="3"></textarea>
+                        <label for="f-msg">Conte um pouco <small>(opcional)</small></label>
+                        <textarea id="f-msg" name="mensagem" rows="4"></textarea>
                     </div>
-                    <button class="botao" type="submit">Enviar pelo WhatsApp ↗</button>
-                    <p class="aviso-form" id="aviso-form" role="status" aria-live="polite"></p>
+                    <button class="botao" type="submit">Enviar pelo WhatsApp <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-diag"></use></svg></button>
+                    <p class="aviso-form" id="aviso-form" role="status"></p>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer class="base wrap">
-        <a class="marca" href="./">Kaique Mota</a>
-        <span>Fotografia · Ribeirão Preto, SP</span>
-        <nav aria-label="Redes">
-            <a href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://wa.me/5516982157266?text=Oi%2C%20Kaique%21%20Vi%20seu%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
-        </nav>
-        <span>© <span data-ano>2026</span> Kaique Mota</span>
+    <footer class="base">
+        <div class="wrap">
+            <p class="base-marca" aria-hidden="true">Kaique Mota</p>
+            <div class="base-linha">
+                <p>Fotografia · Ribeirão Preto, SP</p>
+                <ul>
+                    <li><a href="https://www.instagram.com/okaiquemota" target="_blank" rel="noopener">Instagram<span class="visualmente-escondido"> (abre em nova aba)</span></a></li>
+                    <li><a href="https://wa.me/5516982157266?text=Oi%2C%20Kaique%21%20Vi%20seu%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp<span class="visualmente-escondido"> (abre em nova aba)</span></a></li>
+                </ul>
+                <p>© <span data-ano>2026</span> Kaique Mota</p>
+                <a class="volta" href="#conteudo">Voltar ao topo <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cima"></use></svg></a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Foto grande -->
-    <dialog class="visor" id="visor" aria-label="Foto">
+    <dialog class="visor" id="visor" aria-label="Foto ampliada">
         <img class="visor-foto" id="visor-foto" alt="">
-        <button class="visor-btn visor-fechar" id="visor-fechar" type="button">Fechar</button>
-        <button class="visor-btn visor-ant" id="visor-ant" type="button" aria-label="Foto anterior">←</button>
-        <button class="visor-btn visor-prox" id="visor-prox" type="button" aria-label="Próxima foto">→</button>
-        <span class="visor-conta" id="visor-conta"></span>
+        <p class="visor-conta" id="visor-conta" aria-live="polite"></p>
+        <button class="visor-btn visor-fechar" id="visor-fechar" type="button" aria-label="Fechar"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-fechar"></use></svg></button>
+        <button class="visor-btn visor-ant" id="visor-ant" type="button" aria-label="Foto anterior"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-esq"></use></svg></button>
+        <button class="visor-btn visor-prox" id="visor-prox" type="button" aria-label="Próxima foto"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dir"></use></svg></button>
     </dialog>
-
-    <script>
-        document.querySelectorAll('[data-ano]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
-
-        // Quem chega por um link de pacote (#casamento, #ensaios...) já vê ele aberto
-        (function () {
-            function abre() {
-                var alvo = location.hash && document.getElementById(location.hash.slice(1));
-                if (alvo && alvo.tagName === 'DETAILS') { alvo.open = true; alvo.scrollIntoView(); }
-            }
-            abre();
-            window.addEventListener('hashchange', abre);
-        })();
-
-        // Foto grande: setas, teclado e arrastar no celular
-        (function () {
-            var quadros = Array.prototype.slice.call(document.querySelectorAll('.quadro'));
-            var visor = document.getElementById('visor');
-            if (!quadros.length || typeof visor.showModal !== 'function') return;
-            var foto = document.getElementById('visor-foto'), conta = document.getElementById('visor-conta');
-            var atual = 0;
-            function mostra(k) {
-                atual = (k + quadros.length) % quadros.length;
-                var img = quadros[atual].querySelector('img');
-                foto.src = 'img/vs-' + quadros[atual].dataset.foto + '-1080.jpg';
-                foto.alt = img.alt;
-                conta.textContent = (atual + 1) + ' / ' + quadros.length;
-                new Image().src = 'img/vs-' + quadros[(atual + 1) % quadros.length].dataset.foto + '-1080.jpg';
-            }
-            quadros.forEach(function (q, k) { q.addEventListener('click', function () { mostra(k); visor.showModal(); }); });
-            document.getElementById('visor-fechar').addEventListener('click', function () { visor.close(); });
-            document.getElementById('visor-ant').addEventListener('click', function () { mostra(atual - 1); });
-            document.getElementById('visor-prox').addEventListener('click', function () { mostra(atual + 1); });
-            visor.addEventListener('keydown', function (e) {
-                if (e.key === 'ArrowLeft') mostra(atual - 1);
-                else if (e.key === 'ArrowRight') mostra(atual + 1);
-            });
-            var x0 = null, arrastou = false;
-            visor.addEventListener('pointerdown', function (e) { x0 = e.clientX; arrastou = false; });
-            visor.addEventListener('pointerup', function (e) {
-                if (x0 === null) return;
-                var dx = e.clientX - x0; x0 = null;
-                if (Math.abs(dx) > 50) { arrastou = true; mostra(atual + (dx < 0 ? 1 : -1)); }
-            });
-            visor.addEventListener('click', function (e) { if (!arrastou && e.target === visor) visor.close(); arrastou = false; });
-        })();
-
-        // Consultar data: o formulário vira uma mensagem pronta no WhatsApp
-        (function () {
-            var form = document.getElementById('consulta'), aviso = document.getElementById('aviso-form');
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var v = function (n) { return (form.elements[n].value || '').trim(); };
-                if (!v('nome')) { aviso.textContent = 'Coloca o seu nome pra eu saber com quem estou falando.'; form.elements.nome.focus(); return; }
-                var data = v('data');
-                if (data) { var p = data.split('-'); data = p[2] + '/' + p[1] + '/' + p[0]; }
-                var linhas = ['Oi, Kaique! Vim pelo site.', '', 'Nome: ' + v('nome'), 'Tipo de foto: ' + v('tipo'), 'Data: ' + (data || 'ainda não sei'), 'Local: ' + (v('local') || 'a combinar')];
-                if (v('mensagem')) linhas.push('', v('mensagem'));
-                var url = 'https://wa.me/5516982157266?text=' + encodeURIComponent(linhas.join('\n'));
-                aviso.textContent = 'Abrindo o WhatsApp…';
-                var janela = window.open(url, '_blank', 'noopener');
-                if (!janela) location.href = url;
-            });
-        })();
-    </script>
 </body>
 </html>

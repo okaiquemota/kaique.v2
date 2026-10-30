@@ -2,7 +2,9 @@
 
 Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo, tudo centralizado.
 
-Em `/fotografia` fica o site profissional do [@okaiquemota](https://www.instagram.com/okaiquemota/), no estilo dos sites de fotógrafos de casamento fine art: abertura com uma foto e a assinatura, "Trabalhos recentes" (uma faixa de fotos por trabalho), "Sobre", "Como funciona", os pacotes 2026 e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem o tipo de foto.
+Em `/fotografia` fica o site de fotografia (o do [@okaiquemota](https://www.instagram.com/okaiquemota/)): abertura com foto e apresentação, "Trabalhos recentes" (uma faixa de fotos por trabalho), "Sobre", "Como funciona", os pacotes 2026 em abas, as condições e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem a aba do tipo de foto.
+
+Títulos em Instrument Serif e texto em Instrument Sans, as duas guardadas em `fotografia/fontes/` (licença OFL). Os efeitos (fotos que aparecem ao rolar, topo que some ao descer, abas, visor de fotos) ficam no `fotografia.js`; sem ele a página continua inteira, e quem pede menos movimento no sistema vê tudo parado.
 
 ```
 .
@@ -10,6 +12,8 @@ Em `/fotografia` fica o site profissional do [@okaiquemota](https://www.instagra
 ├── fotografia/
 │   ├── index.html         o site do okaiquemota (pacotes e preços estão aqui)
 │   ├── fotografia.css
+│   ├── fotografia.js      menu do celular, abas dos pacotes, visor de fotos e formulário
+│   ├── fontes/            Instrument Serif e Instrument Sans (woff2)
 │   └── img/               fotos dos trabalhos (NOME-1080.jpg e NOME-720.jpg, 4:5) e o retrato kaique-*.jpg
 └── assets/
     ├── css/site.css
@@ -27,7 +31,7 @@ Substitua `assets/img/kaique.jpg` por outra com o mesmo nome. Se mudar o tamanho
 
 ## Adicionar um trabalho
 
-Cada trabalho é um `<article class="trabalho">` dentro de `<div class="trabalhos">` no `fotografia/index.html`: o tipo (rótulo), o nome e uma faixa com 4 fotos. Pra um trabalho novo, copie o bloco, troque o tipo, o nome, as fotos e o `alt` de cada uma, e coloque o mais novo em cima. Cada foto tem duas versões em `fotografia/img/`: `-1080.jpg` (1080×1350) e `-720.jpg` (720×900).
+Cada trabalho é um `<article class="trabalho">` na seção `#trabalhos` do `fotografia/index.html`: uma faixa com 4 fotos e, embaixo, o nome e o tipo. Pra um trabalho novo, copie o bloco logo abaixo do título da seção (o mais novo fica em cima) e troque o nome, o tipo e as fotos: em cada foto, o `src`, o `srcset`, o `data-grande` (a versão grande que abre no visor), o `alt` e o `aria-label`. Cada foto tem duas versões em `fotografia/img/`: `-1080.jpg` (1080×1350) e `-720.jpg` (720×900).
 
 ## Adicionar ou trocar um link
 
