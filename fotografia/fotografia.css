@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------
    okaiquemota — site de fotografia do Kaique.
    Referências: os sites dos fotógrafos de casamento fine art (a foto manda,
-   muito respiro, serifa editorial, o portfólio contado como história,
+   muito respiro, serifa editorial, os trabalhos recentes,
    "sobre", como funciona, investimento e consulta de data).
    Identidade: a assinatura, a Times e as cores do okaiquemota.
 ------------------------------------------------------------------------- */
@@ -72,40 +72,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .menu { display: flex; flex-wrap: wrap; gap: 0 26px; font-size: 14px; }
 .menu a { display: inline-flex; align-items: center; min-height: 44px; }
 
-/* ---------- Abertura: três fotos lado a lado ---------- */
-.abertura { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-.abertura img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+/* ---------- Abertura: uma foto e a apresentação ao lado ---------- */
+.abertura { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(12px, 2vw, 28px); align-items: center; }
+.abertura-foto { grid-column: 1 / 7; }
+.abertura-foto img { width: 100%; aspect-ratio: 4 / 5; max-height: calc(100svh - 96px); object-fit: cover; }
+.abertura-texto { grid-column: 8 / 13; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.abertura-texto .assinatura { width: min(260px, 62vw); margin-bottom: 28px; }
+.frase-grande { max-width: 15em; font-size: clamp(26px, 3vw, 38px); font-weight: 400; line-height: 1.22; }
+.abertura-texto .linha-fina { max-width: 25em; margin-top: 18px; }
+.abertura-texto .link { margin-top: 14px; }
+.junto { white-space: nowrap; }
 
-/* ---------- Manifesto ---------- */
-.manifesto { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: clamp(64px, 9vw, 120px); }
-.manifesto .assinatura { width: min(300px, 62vw); margin-bottom: 30px; }
-.manifesto p.frase-grande { max-width: 22em; font-size: clamp(24px, 3.4vw, 38px); line-height: 1.25; }
-.manifesto .linha-fina { margin-top: 18px; }
-.manifesto .link { margin-top: 18px; }
-
-/* ---------- Portfólio: a história contada em blocos editoriais ---------- */
-.historia { display: flex; flex-direction: column; gap: clamp(28px, 5vw, 72px); margin-top: clamp(40px, 6vw, 72px); }
-.bloco { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(12px, 2vw, 28px); align-items: start; }
-.quadro { position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; }
+/* ---------- Trabalhos: uma faixa de fotos por trabalho ---------- */
+.trabalhos { display: flex; flex-direction: column; gap: clamp(56px, 8vw, 96px); margin-top: clamp(40px, 6vw, 72px); }
+.trabalho-topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 18px; }
+.trabalho-topo h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 400; line-height: 1.1; }
+.faixa { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.quadro { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; }
 .quadro img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
 @media (hover: hover) and (pointer: fine) { .quadro:hover img { transform: scale(1.025); } }
-
-/* destaque: foto grande + legenda ao lado */
-.destaque .quadro { grid-column: 1 / 8; }
-.destaque .legenda { grid-column: 9 / 13; align-self: end; display: flex; flex-direction: column; gap: 10px; padding-bottom: 8px; }
-.destaque.invertido .quadro { grid-column: 6 / 13; grid-row: 1; }
-.destaque.invertido .legenda { grid-column: 1 / 5; grid-row: 1; }
-.legenda h3 { font-size: clamp(28px, 3vw, 40px); font-weight: 400; line-height: 1.05; }
-.citacao { font-size: clamp(20px, 2vw, 26px); font-style: italic; line-height: 1.3; }
-.citacao::before { content: "“"; }
-.citacao::after { content: "”"; }
-/* par: duas fotos em alturas diferentes */
-.par .quadro:first-child { grid-column: 2 / 7; }
-.par .quadro:last-child { grid-column: 8 / 13; margin-top: 18%; }
-/* trio: um detalhe pequeno, um retrato e outro detalhe */
-.trio .quadro:nth-child(1) { grid-column: 1 / 4; margin-top: 22%; }
-.trio .quadro:nth-child(2) { grid-column: 5 / 10; }
-.trio .quadro:nth-child(3) { grid-column: 10 / 13; margin-top: 44%; }
 
 /* ---------- Sobre ---------- */
 .sobre { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(12px, 2vw, 28px); align-items: center; }
@@ -216,17 +201,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
     body { font-size: 15px; }
     .topo { flex-direction: column; justify-content: center; gap: 0; padding-top: calc(10px + env(safe-area-inset-top, 0px)); padding-bottom: 6px; }
     .menu { justify-content: center; gap: 0 18px; font-size: 13px; }
-    /* a abertura vira uma fileira que desliza com o dedo */
-    .abertura { display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margem); scrollbar-width: none; }
-    .abertura::-webkit-scrollbar { display: none; }
-    .abertura img { flex: 0 0 84%; width: 84%; min-width: 0; scroll-snap-align: start; }
-    .bloco { display: flex; flex-direction: column; gap: 18px; }
-    .destaque .legenda { order: 2; align-self: stretch; padding: 0; }
-    .par .quadro:first-child { width: 82%; }
-    .par .quadro:last-child { width: 82%; margin: 0 0 0 auto; }
-    .trio { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-    .trio .quadro:nth-child(1), .trio .quadro:nth-child(3) { width: calc(50% - 6px); margin: 0; }
-    .trio .quadro:nth-child(2) { order: -1; width: 100%; }
+    .abertura { display: flex; flex-direction: column; gap: 44px; }
+    .abertura-foto { width: 100%; }
+    .abertura-foto img { max-height: none; }
+    .faixa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .sobre, .contato { display: flex; flex-direction: column; gap: 28px; }
     .sobre .retrato { align-self: flex-start; width: 82%; }
     .passos { grid-template-columns: minmax(0, 1fr); gap: 22px; }
@@ -250,6 +228,3 @@ button, input, select, textarea { font: inherit; color: inherit; }
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; }
 }
-
-/* título da página só para leitores de tela e buscadores */
-.visualmente-escondido { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

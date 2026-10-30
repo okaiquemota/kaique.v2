@@ -2,7 +2,7 @@
 
 Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo, tudo centralizado.
 
-Em `/fotografia` fica o site profissional do [@okaiquemota](https://www.instagram.com/okaiquemota/), no estilo dos sites de fotógrafos de casamento fine art: abertura com três fotos, a assinatura, o portfólio contado como história (o pré-wedding da Vinicius & Stefany), "Sobre", "Como funciona", os pacotes 2026 e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem o tipo de foto.
+Em `/fotografia` fica o site profissional do [@okaiquemota](https://www.instagram.com/okaiquemota/), no estilo dos sites de fotógrafos de casamento fine art: abertura com uma foto e a assinatura, "Trabalhos recentes" (uma faixa de fotos por trabalho), "Sobre", "Como funciona", os pacotes 2026 e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem o tipo de foto.
 
 ```
 .
@@ -10,7 +10,7 @@ Em `/fotografia` fica o site profissional do [@okaiquemota](https://www.instagra
 ├── fotografia/
 │   ├── index.html         o site do okaiquemota (pacotes e preços estão aqui)
 │   ├── fotografia.css
-│   └── img/               fotos do portfólio (vs-NN-1080.jpg e vs-NN-720.jpg, 4:5) e o retrato kaique-*.jpg
+│   └── img/               fotos dos trabalhos (NOME-1080.jpg e NOME-720.jpg, 4:5) e o retrato kaique-*.jpg
 └── assets/
     ├── css/site.css
     └── img/
@@ -25,9 +25,9 @@ Não tem build nem dependência. Pra rodar no computador: `python3 -m http.serve
 
 Substitua `assets/img/kaique.jpg` por outra com o mesmo nome. Se mudar o tamanho, atualize o `width` e o `height` da `<img class="foto">` no `index.html`.
 
-## Trocar fotos do portfólio
+## Adicionar um trabalho
 
-Cada foto tem duas versões em `fotografia/img/`: `-1080.jpg` (1080×1350) e `-720.jpg` (720×900). Pra trocar uma, substitua as duas com o mesmo nome e ajuste o texto do `alt` no `fotografia/index.html`.
+Cada trabalho é um `<article class="trabalho">` dentro de `<div class="trabalhos">` no `fotografia/index.html`: o tipo (rótulo), o nome e uma faixa com 4 fotos. Pra um trabalho novo, copie o bloco, troque o tipo, o nome, as fotos e o `alt` de cada uma, e coloque o mais novo em cima. Cada foto tem duas versões em `fotografia/img/`: `-1080.jpg` (1080×1350) e `-720.jpg` (720×900).
 
 ## Adicionar ou trocar um link
 
