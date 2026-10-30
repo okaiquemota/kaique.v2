@@ -2,13 +2,13 @@
 
 Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo, tudo centralizado.
 
-Em `/fotografia` fica o site de fotografia (o do [@okaiquemota](https://www.instagram.com/okaiquemota/)), no mesmo visual do orçamento: fundo branco, tinta preta, cinza nos detalhes, Tinos (o desenho da Times) e linhas finas. Tem a capa (a foto com a assinatura por cima, que sempre cabe na altura da tela), "Trabalhos", os pacotes 2026 em abas, "Como funciona" e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem a aba do tipo de foto.
+Em `/fotografia` fica o site de fotografia (o do [@okaiquemota](https://www.instagram.com/okaiquemota/)), no mesmo visual do orçamento: fundo branco, tinta preta, cinza nos detalhes, Tinos (o desenho da Times) e linhas finas. Tem a capa (a foto com a assinatura por cima, que sempre cabe na altura da tela), "Sobre", "Trabalhos", os pacotes em abas (sem preços: os valores vão pelo WhatsApp), "Como funciona" e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem a aba do tipo de foto.
 
 ```
 .
 ├── index.html
 ├── fotografia/
-│   ├── index.html         o site do okaiquemota (pacotes e preços estão aqui)
+│   ├── index.html         o site do okaiquemota (textos e pacotes estão aqui)
 │   ├── fotografia.css
 │   ├── fotografia.js      abas dos pacotes, visor de fotos, formulário e o aparecer ao rolar
 │   ├── fontes/            Tinos (woff2, licença Apache 2.0)
