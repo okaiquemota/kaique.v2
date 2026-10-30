@@ -1,73 +1,32 @@
 /* Kaique Mota · Fotografia
-   Efeitos e interações. A página funciona sem este arquivo: sem ele, tudo
-   aparece de uma vez, os pacotes ficam um embaixo do outro e o formulário
-   não envia (os links diretos do WhatsApp continuam lá). */
+   Abas dos pacotes, foto grande, formulário e o aparecer ao rolar.
+   Sem este arquivo a página continua inteira: os pacotes ficam um embaixo
+   do outro e o WhatsApp do rodapé continua lá. */
 (function () {
     'use strict';
 
-    var raiz = document.documentElement;
-    raiz.classList.add('js');
+    document.documentElement.classList.add('js');
     var poucoMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function comportamento() { return poucoMovimento.matches ? 'auto' : 'smooth'; }
 
     document.querySelectorAll('[data-ano]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
-    // ---------- Topo: ganha uma linha ao rolar e se esconde enquanto desce ----------
+    // ---------- Topo: ganha uma linha ao rolar; o link acompanha a seção ----------
     var topo = document.querySelector('.topo');
-    var linksMenu = Array.prototype.slice.call(document.querySelectorAll('.menu ul a'));
-    var ultimoY = window.scrollY;
-    var agendado = false;
-    function aoRolar() {
-        agendado = false;
-        var y = Math.max(0, window.scrollY);
-        topo.classList.toggle('rolou', y > 8);
-        if (y < 200) linksMenu.forEach(function (a) { a.removeAttribute('aria-current'); });
-        if (Math.abs(y - ultimoY) < 6) return;
-        topo.classList.toggle('escondido', y > ultimoY && y > 360 && !topo.contains(document.activeElement));
-        ultimoY = y;
-    }
-    window.addEventListener('scroll', function () {
-        if (!agendado) { agendado = true; requestAnimationFrame(aoRolar); }
-    }, { passive: true });
-    topo.addEventListener('focusin', function () { topo.classList.remove('escondido'); });
+    function aoRolar() { topo.classList.toggle('rolou', window.scrollY > 8); }
+    window.addEventListener('scroll', aoRolar, { passive: true });
     aoRolar();
 
-    // o link do menu acompanha a seção que está na tela
+    var links = Array.prototype.slice.call(document.querySelectorAll('.menu a'));
     if ('IntersectionObserver' in window) {
-        var secoes = linksMenu.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+        var secoes = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
         var vigiaSecao = new IntersectionObserver(function (entradas) {
             entradas.forEach(function (en) {
-                if (!en.isIntersecting) return;
                 var k = secoes.indexOf(en.target);
-                linksMenu.forEach(function (a, j) {
-                    if (j === k) a.setAttribute('aria-current', 'true');
-                    else a.removeAttribute('aria-current');
-                });
+                if (en.isIntersecting) links[k].setAttribute('aria-current', 'true');
+                else links[k].removeAttribute('aria-current');
             });
         }, { rootMargin: '-45% 0px -50% 0px' });
         secoes.forEach(function (s) { if (s) vigiaSecao.observe(s); });
-    }
-
-    // ---------- Menu do celular ----------
-    var menu = document.getElementById('menu-celular');
-    var abreMenu = document.querySelector('.abre-menu');
-    if (menu && abreMenu && typeof menu.showModal === 'function') {
-        abreMenu.addEventListener('click', function () {
-            menu.showModal();
-            abreMenu.setAttribute('aria-expanded', 'true');
-        });
-        menu.addEventListener('close', function () { abreMenu.setAttribute('aria-expanded', 'false'); });
-        menu.querySelector('.fecha-menu').addEventListener('click', function () { menu.close(); });
-        menu.querySelectorAll('a[href^="#"]').forEach(function (a) {
-            a.addEventListener('click', function (ev) {
-                var alvo = document.querySelector(a.getAttribute('href'));
-                if (!alvo) return;
-                ev.preventDefault();
-                menu.close();
-                alvo.scrollIntoView({ behavior: comportamento() });
-                history.replaceState(null, '', a.getAttribute('href'));
-            });
-        });
     }
 
     // ---------- Aparecer ao rolar ----------
@@ -77,7 +36,7 @@
             entradas.forEach(function (en) {
                 if (en.isIntersecting) { en.target.classList.add('visivel'); vigia.unobserve(en.target); }
             });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
         revelaveis.forEach(function (el) { vigia.observe(el); });
     } else {
         revelaveis.forEach(function (el) { el.classList.add('visivel'); });
@@ -95,7 +54,9 @@
             paineis[j].hidden = !sel;
         });
         var b = abas[k];
-        lista.scrollTo({ left: b.offsetLeft - (lista.clientWidth - b.offsetWidth) / 2, behavior: comportamento() });
+        if (lista.scrollWidth > lista.clientWidth) {
+            lista.scrollTo({ left: b.offsetLeft - lista.offsetLeft - (lista.clientWidth - b.offsetWidth) / 2, behavior: poucoMovimento.matches ? 'auto' : 'smooth' });
+        }
         if (marcaEndereco) history.replaceState(null, '', '#' + paineis[k].id);
     }
     function peloEndereco() {
@@ -103,7 +64,7 @@
         for (var j = 0; j < paineis.length; j++) {
             if (paineis[j].id === id) {
                 escolhe(j, false);
-                document.getElementById('investimento').scrollIntoView();
+                document.getElementById('pacotes').scrollIntoView();
                 return true;
             }
         }
@@ -151,18 +112,16 @@
         var hoje = new Date();
         campo.data.min = [hoje.getFullYear(), String(hoje.getMonth() + 1).padStart(2, '0'), String(hoje.getDate()).padStart(2, '0')].join('-');
 
-        // "Quero este" num pacote já preenche o tipo e a mensagem
+        // "Quero este" num pacote já escolhe o tipo e guarda o pacote
         document.querySelectorAll('[data-pacote]').forEach(function (a) {
             a.addEventListener('click', function () {
                 campo.tipo.value = a.dataset.tipo;
-                if (!campo.mensagem.value.trim() || campo.mensagem.dataset.auto) {
-                    campo.mensagem.value = 'Tenho interesse no pacote ' + a.dataset.pacote + '.';
-                    campo.mensagem.dataset.auto = '1';
-                }
+                campo.pacote.value = a.dataset.pacote;
+                aviso.textContent = 'Pacote escolhido: ' + a.dataset.pacote + '.';
                 setTimeout(function () { campo.nome.focus({ preventScroll: true }); }, 0);
             });
         });
-        campo.mensagem.addEventListener('input', function () { delete campo.mensagem.dataset.auto; });
+        campo.tipo.addEventListener('change', function () { campo.pacote.value = ''; aviso.textContent = ''; });
         campo.nome.addEventListener('input', function () {
             if (campo.nome.value.trim()) { campo.nome.removeAttribute('aria-invalid'); erroNome.hidden = true; }
         });
@@ -181,11 +140,10 @@
             var linhas = [
                 'Oi, Kaique! Vim pelo site.', '',
                 'Nome: ' + v('nome'),
-                'Tipo de foto: ' + v('tipo'),
+                'Tipo de foto: ' + v('tipo') + (v('pacote') ? ' (' + v('pacote') + ')' : ''),
                 'Data: ' + (data || 'ainda não sei'),
                 'Local: ' + (v('local') || 'a combinar')
             ];
-            if (v('mensagem')) linhas.push('', v('mensagem'));
             var url = 'https://wa.me/' + form.dataset.whats + '?text=' + encodeURIComponent(linhas.join('\n'));
             aviso.textContent = 'Abrindo o WhatsApp…';
             var janela = window.open(url, '_blank');
@@ -220,11 +178,7 @@
         };
 
         quadros.forEach(function (q, k) {
-            q.addEventListener('click', function () {
-                quemAbriu = q;
-                mostra(k);
-                visor.showModal();
-            });
+            q.addEventListener('click', function () { quemAbriu = q; mostra(k); visor.showModal(); });
         });
         visor.addEventListener('close', function () { if (quemAbriu) quemAbriu.focus(); });
         document.getElementById('visor-fechar').addEventListener('click', function () { visor.close(); });

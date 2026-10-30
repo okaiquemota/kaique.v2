@@ -2,9 +2,7 @@
 
 Página pessoal: o nome no topo, uma foto no meio com a assinatura de verdade por cima e os links embaixo, tudo centralizado.
 
-Em `/fotografia` fica o site de fotografia (o do [@okaiquemota](https://www.instagram.com/okaiquemota/)): abertura com foto e apresentação, "Trabalhos recentes" (uma faixa de fotos por trabalho), "Sobre", "Como funciona", os pacotes 2026 em abas, as condições e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem a aba do tipo de foto.
-
-Títulos em Instrument Serif e texto em Instrument Sans, as duas guardadas em `fotografia/fontes/` (licença OFL). Os efeitos (fotos que aparecem ao rolar, topo que some ao descer, abas, visor de fotos) ficam no `fotografia.js`; sem ele a página continua inteira, e quem pede menos movimento no sistema vê tudo parado.
+Em `/fotografia` fica o site de fotografia (o do [@okaiquemota](https://www.instagram.com/okaiquemota/)), no mesmo visual do orçamento: fundo branco, tinta preta, cinza nos detalhes, Tinos (o desenho da Times) e linhas finas. Tem a capa (a foto com a assinatura por cima, que sempre cabe na altura da tela), "Trabalhos", os pacotes 2026 em abas, "Como funciona" e "Consultar data", um formulário que monta a mensagem pronta no WhatsApp. Fica em https://okaiquemota.com.br/fotografia/ — e `/fotografia/#casamento`, `#pre-wedding`, `#festas`, `#aniversarios`, `#making-of`, `#ensaios` e `#marcas` já abrem a aba do tipo de foto.
 
 ```
 .
@@ -12,9 +10,9 @@ Títulos em Instrument Serif e texto em Instrument Sans, as duas guardadas em `f
 ├── fotografia/
 │   ├── index.html         o site do okaiquemota (pacotes e preços estão aqui)
 │   ├── fotografia.css
-│   ├── fotografia.js      menu do celular, abas dos pacotes, visor de fotos e formulário
-│   ├── fontes/            Instrument Serif e Instrument Sans (woff2)
-│   └── img/               fotos dos trabalhos (NOME-1080.jpg e NOME-720.jpg, 4:5) e o retrato kaique-*.jpg
+│   ├── fotografia.js      abas dos pacotes, visor de fotos, formulário e o aparecer ao rolar
+│   ├── fontes/            Tinos (woff2, licença Apache 2.0)
+│   └── img/               fotos dos trabalhos (NOME-1080.jpg e NOME-720.jpg, 4:5) e o retrato da capa, kaique-*.jpg
 └── assets/
     ├── css/site.css
     └── img/
